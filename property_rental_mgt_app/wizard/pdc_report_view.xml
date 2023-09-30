@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Report Wizard Form-->
+    <record id="form_nets_pdc_report" model="ir.ui.view">
+        <field name="name">form.mk.pdc.report</field>
+        <field name="model">pdc.report</field>
+        <field name="arch" type="xml">
+            <form string="PDC Form">
+                <group>
+                    <field name="partner_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit':True}"/>
+                </group>
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <group>
+                        <field name="opening_balance"/>
+                        <field name="journal_ids" widget="many2many_tags" domain="[('type','=','bank'),('is_pdc_journal','=',True)]" options="{'no_create': True, 'no_create_edit':True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Export" name="export_pdc_report" type="object" class="oe_highlight" icon="fa-file-excel-o"/>
+                    <button string="Close Window" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--Report Wizard Action-->
+    <record id="action_nets_pdc_report" model="ir.actions.act_window">
+        <field name="name">Post Dated Cheques (PDC) Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pdc.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="form_nets_pdc_report"/>
+        <field name="target">new</field>
+    </record>
+
+    <!--Menus-->
+    <menuitem name="Post Dated Cheques (PDC) Report"
+              id="menu_nets_pdc_report"
+              parent="account_reports.account_reports_partners_reports_menu"
+              action="action_nets_pdc_report"
+              sequence="10"/>
+</odoo>

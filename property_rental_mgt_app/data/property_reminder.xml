@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record forcecreate="True" model="ir.cron"
+                id="rental_contract_remainder">
+            <field name="name">Property Rental Contract Remainder
+            </field>
+            <field name="model_id" ref="model_contract_details"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.expired_contract_remainder()</field>
+        </record>
+
+        <record forcecreate="True" model="ir.cron" id="cheque_payment_remainder">
+            <field name="name">Checque Deposit Or Renew Remainder</field>
+            <field name="model_id" ref="model_account_payment"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.shceduler_to_remember_payments()</field>
+        </record>
+
+        <record forcecreate="True" model="ir.cron"
+                id="commission_worksheet_remainder">
+            <field name="name">Generate Property Commission Worksheet
+            </field>
+            <field name="model_id" ref="model_account_payment"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.generate_commission_worksheet()</field>
+        </record>
+
+        <record forcecreate="True" model="ir.cron"
+                id="monthly_maintainance_remainder">
+            <field name="name">Property Maintainance Notification
+            </field>
+            <field name="model_id" ref="model_contract_details"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.monthly_maintainance_remainder()</field>
+        </record>
+
+        <!-- rented property set to rentable state base on all expire contracts -->
+        <record forcecreate="True" model="ir.cron"
+                id="property_product_set_available">
+            <field name="name">Rent Property Set to Available
+            </field>
+            <field name="model_id" ref="model_product_product"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.property_set_to_available()</field>
+        </record>
+
+        <!-- send payment reminder mail ====== on instalment due date -->
+        <record forcecreate="True" model="ir.cron"
+                id="payment_on_due_date_reminder">
+            <field name="name">Reminder Invoice Payment on Due Date
+            </field>
+            <field name="model_id" ref="model_account_move"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.payment_on_due_date_reminder()</field>
+        </record>
+
+        <!-- send payment reminder till not come due date -->
+        <record forcecreate="True" model="ir.cron"
+                id="payment_till_not_come_due_date_reminder">
+            <field name="name">Reminder on Till Not Come Property Payment Due Date
+            </field>
+            <field name="model_id" ref="model_account_move"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.payment_till_not_come_due_date_reminder()</field>
+        </record>
+
+        <!-- send before days on due date -->
+        <record forcecreate="True" model="ir.cron"
+                id="payment_before_days_on_due_date_reminder">
+            <field name="name">Reminder Before Days on Property Payment Due Date
+            </field>
+            <field name="model_id" ref="model_account_move"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.payment_before_days_on_due_date_reminder()</field>
+        </record>
+
+        <!-- send after days on due date -->
+        <record forcecreate="True" model="ir.cron"
+                id="payment_reminder_after_due_date">
+            <field name="name">Reminder After Going Payment Due Date
+            </field>
+            <field name="model_id" ref="model_account_move"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.payment_reminder_after_due_date()</field>
+        </record>
+
+        <!-- auto deduct on Delay Payment -->
+        <record forcecreate="True" model="ir.cron"
+                id="auto_deduct_fine_on_delay_payment">
+            <field name="name">Auto Deduct Fine on Delay Property Payment
+            </field>
+            <field name="model_id" ref="model_product_product"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.auto_deduct_fine_on_delay_payment()</field>
+        </record>
+
+<!--        Update State to Running-->
+        <record id="update_state_date_over" model="ir.cron">
+            <field name="name">Update State to Running/Expire</field>
+            <field name="model_id" ref="model_contract_details"/>
+            <field name="state">code</field>
+            <field name="code">model.set_state_to_running_expire()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="active" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

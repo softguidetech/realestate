@@ -1,0 +1,62 @@
+<odoo>
+    <record id="view_repair_order_form_inherit" model="ir.ui.view">
+        <field name="name">maintenance.request.form</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='description']" position="after">
+                <field name="is_property_maintenance"/>
+                <!--                <field name="property_id" attrs="{'invisible':[('is_property_maintenance', '=', False)]}"-->
+                <!--                       options="{'no_create': True, 'no_open': True}" domain="[('is_property','=','True')]"/>-->
+                <field name="is_floor_maintenance"/>
+                <field name="floor_id" attrs="{'invisible':[('is_floor_maintenance', '=', False)]}"
+                       options="{'no_create': True, 'no_open': True}"/>
+                <field name="is_unit_maintenance"/>
+                <field name="unit_id" attrs="{'invisible':[('is_unit_maintenance', '=', False)]}"
+                       options="{'no_create': True, 'no_open': True}"/>
+                <field name="attachment_ids" widget="many2many_binary"/>
+            </xpath>
+            <xpath expr="//field[@name='product_qty']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="string">Property</attribute>
+                <attribute name="attrs">{'invisible': [('is_property_maintenance', '=', False)]}</attribute>
+                <attribute name="domain">[('is_property','=','True')]</attribute>
+            </xpath>
+            <xpath expr="//page[@name='operations']" position="after">
+                <page name="vendor_bills" string="Vendor Bills">
+                    <field name="vendor_bill_ids" readonly="1">
+                        <tree editable="bottom">
+                            <field name="repair_cus_order_id" invisible="1"/>
+                            <field name="name"/>
+                            <field name="invoice_partner_display_name"/>
+                            <field name="invoice_date"/>
+                            <field name="invoice_date_due"/>
+                            <field name="ref"/>
+                            <field name="amount_untaxed_signed"/>
+                            <field name="amount_total_signed"/>
+                            <field name="amount_total_in_currency_signed"/>
+                            <field name="payment_state"/>
+                        </tree>
+                        <form></form>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//div[@name='button_box']/button[@name='action_created_invoice']" position="before">
+                <button name="action_create_move"
+                        type="object"
+                        string="Create Vendor Bill"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o">
+<!--                     <field name="move_count" widget="statinfo" string="Vendor Bills"/> -->
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='picking_id']" position="after">
+                <field name="analytic_account_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

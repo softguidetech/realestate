@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Odoo Property Lease and Rental Management App</title>
+	<style>
+
+   </style>
+
+</head>
+<body>
+	<div>
+		<section class="oe_container lead title_box" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);text-align: center;">
+			<div >
+				<div >
+					<h2 class="oe_slogan title" style="margin-bottom: 10px;padding-top: 10px;    background: -webkit-linear-gradient(#4c59a8, #21bec2);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+						<b> Odoo Property Rental, Sale and Lease Management App</b>
+					</h2>
+					<hr style="width: 80%;background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, #1c2792));"></hr>
+					<p class="oe_slogan" style="padding: 5px 10px;"> Property lease and rental management app is complete solution all kind of propery and housing management system. you can create manage , renew ,cancel and terminate contract for lease and selling of property-house. based on contract invoice will be created for every month/year according to the contract duration. this odoo apps allow partial payment for property selling.Have payment with multiple cheques. once invoice is created invoice due date automatically set based on interval set on contract. also this app has feature to maintain property maintenance and user commission calculate at register payment time base on property. commission and commission sheets are automatically generated based on the invoice payment. this app also support to view and print contract expired report, property analysis report. <br/>Various reminder mail notification options, apply sale offer and rent offer, apply delay invoice/instalment payment fine, property quick search options by name, price range, type, status, category. easy to attached property documents and images.</p>
+				</div>
+			</div>
+			<hr style="width: 80%;"></hr>
+			<div>
+				<div style="margin: 0px 20px;">
+					<div  class="row">
+						<div class="col-sm border feature-div" style="margin: 0px 10px;box-shadow: 10px 10px 10px #c7c7c7;" >
+							<section style="max-height: 85%;margin: auto;display: contents;">
+								<div style="margin-top: 15px;">
+									<img class="img img-responsive" src="features/f1.png" style="border-radius: 10%; max-width: 100px;max-height: 100px;    min-height: 100px;margin: auto;" />
+								</div>
+								<h3>
+									<font style="vertical-align: inherit;">
+										Quick Property Sale
+									</font>
+								</h3>
+								<p style="margin-bottom: 10px;">
+									<font style="vertical-align: inherit;font-size: 15px;"> User can easily sale the property by one click. </font>
+								</p>
+							</section>
+						</div>
+						<div class="col-sm border feature-div" style="margin: 0px 10px;box-shadow: 10px 10px 10px #c7c7c7;" >
+							<section style="max-height: 85%;margin: auto;display: contents;">
+								<div style="margin-top: 15px;">
+									<img class="img img-responsive" src="features/f2.png" style="border-radius: 10%; max-width: 100px;max-height: 100px;    min-height: 100px;margin: auto;" />
+								</div>
+								<h3>
+									<font style="vertical-align: inherit;">
+										Quick Property Rent
+									</font>
+								</h3>
+								<p style="margin-bottom: 10px;">
+									<font style="vertical-align: inherit;font-size: 15px;">User can easily manage property for rent. </font>
+								</p>
+							</section>
+						</div>
+						<div class="col-sm border feature-div" style="margin: 0px 10px;box-shadow: 10px 10px 10px #c7c7c7;" >
+							<section style="max-height: 85%;margin: auto;display: contents;">
+								<div style="margin-top: 15px;">
+									<img class="img img-responsive" src="features/f3.png" style="border-radius: 10%; max-width: 100px;max-height: 100px;    min-height: 100px;margin: auto;" />
+								</div>
+								<h3>
+									<font style="vertical-align: inherit;">
+										Create &amp; Renew Contract &amp; Contract Report
+									</font>
+								</h3>
+								<p style="margin-bottom: 10px;">
+									<font style="vertical-align: inherit;font-size: 15px;"> Create contract for rent property start to end date, renew contract.</font>
+								</p>
+							</section>
+						</div>
+					</div>
+				</div>
+				<div style="margin: 0px 20px;">
+					<div  class="row">
+						<div class="col-sm border feature-div" style="margin: 0px 10px;box-shadow: 10px 10px 10px #c7c7c7;" >
+							<section style="max-height: 85%;margin: auto;display: contents;">
+								<div style="margin-top: 15px;">
+									<img class="img img-responsive" src="features/f4.png" style="border-radius: 10%; max-width: 100px;max-height: 100px;    min-height: 100px;margin: auto;" />
+								</div>
+								<h3>
+									<font style="vertical-align: inherit;">
+										User Commission
+									</font>
+								</h3>
+								<p style="margin-bottom: 10px;">
+									<font style="vertical-align: inherit;font-size: 15px;"> Configure commission, view commission line and worksheet.</font>
+								</p>
+							</section>
+						</div>
+						<div class="col-sm border feature-div" style="margin: 0px 10px;box-shadow: 10px 10px 10px #c7c7c7;" >
+							<section style="max-height: 85%;margin: auto;display: contents;">
+								<div style="margin-top: 15px;">
+									<img class="img img-responsive" src="features/maintain.png" style="border-radius: 10%; max-width: 100px;max-height: 100px;    min-height: 100px;margin: auto;" />
+								</div>
+								<h3>
+									<font style="vertical-align: inherit;">
+										Easy to Maintain Property
+									</font>
+								</h3>
+								<p style="margin-bottom: 10px;">
+									<font style="vertical-align: inherit;font-size: 15px;"> Maintain property and generate invoice. </font>
+								</p>
+							</section>
+						</div>
+
+						<div class="col-sm border feature-div" style="margin: 0px 10px;box-shadow: 10px 10px 10px #c7c7c7;" >
+							<section style="max-height: 85%;margin: auto;display: contents;">
+								<div style="margin-top: 15px;">
+									<img class="img img-responsive" src="features/search.png" style="border-radius: 10%; max-width: 100px;max-height: 100px;    min-height: 100px;margin: auto;" />
+								</div>
+								<h3>
+									<font style="vertical-align: inherit;">
+										Quick Search Property
+									</font>
+								</h3>
+								<p style="margin-bottom: 10px;">
+									<font style="vertical-align: inherit;font-size: 15px;">  Search property by name, price range, category &amp; type.</font>
+								</p>
+							</section>
+						</div>
+					</div>
+				</div>
+				<div style="margin: 0px 20px;">
+					<div  class="row">
+						<div class="col-sm border feature-div" style="margin: 0px 10px;box-shadow: 10px 10px 10px #c7c7c7;" >
+							<section style="max-height: 85%;margin: auto;display: contents;">
+								<div style="margin-top: 15px;">
+									<img class="img img-responsive" src="features/offer.png" style="border-radius: 10%; max-width: 100px;max-height: 100px;    min-height: 100px;margin: auto;" />
+								</div>
+								<h3>
+									<font style="vertical-align: inherit;">
+										Property Sale and Rent Offer
+									</font>
+								</h3>
+								<p style="margin-bottom: 10px;">
+									<font style="vertical-align: inherit;font-size: 15px;"> Sale and rent offer apply on sale/rent property. </font>
+								</p>
+							</section>
+						</div>
+						<div class="col-sm border feature-div" style="margin: 0px 10px;box-shadow: 10px 10px 10px #c7c7c7;" >
+							<section style="max-height: 85%;margin: auto;display: contents;">
+								<div style="margin-top: 15px;">
+									<img class="img img-responsive" src="features/fine.png" style="border-radius: 10%; max-width: 100px;max-height: 100px;    min-height: 100px;margin: auto;" />
+								</div>
+								<h3>
+									<font style="vertical-align: inherit;">
+										Delay Instalment Payment Fine
+									</font>
+								</h3>
+								<p style="margin-bottom: 10px;">
+									<font style="vertical-align: inherit;font-size: 15px;">Get delay payment fine &amp; generate invoice. </font>
+								</p>
+							</section>
+						</div>
+						<div class="col-sm border feature-div" style="margin: 0px 10px;box-shadow: 10px 10px 10px #c7c7c7;" >
+							<section style="max-height: 85%;margin: auto;display: contents;">
+								<div style="margin-top: 15px;">
+									<img class="img img-responsive" src="features/payment.png" style="border-radius: 10%; max-width: 100px;max-height: 100px;    min-height: 100px;margin: auto;" />
+								</div>
+								<h3>
+									<font style="vertical-align: inherit;">
+										Verious Property  Payment Reminder
+									</font>
+								</h3>
+								<p style="margin-bottom: 10px;">
+									<font style="vertical-align: inherit;font-size: 15px;"> Property payment instalment remind notification.</font>
+								</p>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div >
+				<div class="oe_slogan oe_spaced text-center">
+					<a class="btn mt8 ml8 button" style="background-color: #13b9af;color: #FFFFFF !important;font-size: 20px;font-weight: bold;border-radius: 7px;min-height: 45px;box-shadow: 5px 8px 10px #0d4a45;    min-width: 300px;margin: 10px 0px;"href="mailto:info@softguidetech.com?subject=Request%20Demo%20for%20Property%20Sale%20Lease%20and%20Rental%20Management%20App" target="_top"> Request a Demo</a>
+<!--					<a class="btn mt8 ml8 button" style="background-color: #13b9af;color: #FFFFFF !important;font-size: 20px;font-weight: bold;border-radius: 7px;min-height: 45px;box-shadow: 5px 8px 10px #0d4a45;min-width: 300px;margin: 10px 0px;" href="https://youtu.be/qp0V-bN-Poo" target="_blank"> Video Tutorial</a>-->
+				</div>
+			</div>
+			<hr style="width: 80%;"></hr>
+			<div style="min-height: 20px;"></div>
+		</section>
+
+		<section class="oe_container lead title_box" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);text-align: center;">
+			<div  style="margin-bottom: 40px;">
+				<div >
+					<h2 class="oe_slogan title" style="margin-bottom: 10px;    background: -webkit-linear-gradient(#0e99ac, #4c4ca8);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+						<b> Description</b>
+					</h2>
+					<hr style="width: 80%;height: 1px;background: -webkit-gradient(linear, 0 0, 100% 0, from(#d58383), to(#5d4da6), color-stop(50%, #0b1255));"></hr>
+				</div>
+			</div>
+
+			<div >
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> User Access Configuration </h3>
+					<p style="padding: 5px 10px;">User access right configuration for renter, purchaser and manager.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="user_config_1.gif"/>
+				</div>
+			</div>
+
+			<div >
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Configuration </h3>
+					<p style="padding: 5px 10px;">configuration for real estate.</p>
+					<br/>
+                    <img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="res_company1.png"/>
+                    <br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="res_company2.png"/>
+					<br/>
+                </div>
+			</div>
+
+			<div >
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Configuration </h3>
+					<p style="padding: 5px 10px;"> Configure partial payment, property facility, property type, property contract, classification.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="config_pay.png"/>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="config_facility.png"/>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="config_type.png"/>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="config_contract.png"/>
+					<br/>
+					<p style="padding: 5px 10px;"> Configure delay fine payment</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="delay_fine_menu.png"/>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="classification.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Configure Invoice/Instalment Payment Reminder Mail </h3>
+					<p style="padding: 5px 10px;">Configure property reminder mail with various configuration options.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="setting.png"/>
+					<br/>
+					<p style="padding: 5px 10px;">Send reminder mail on invoice payment due date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="setting2.png"/>
+					<br/>
+					<p style="padding: 5px 10px;">Send reminder mail on invoice payment due date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="setting2.png"/>
+					<br/>
+					<p style="padding: 5px 10px;">Send reminder mail on invoice payment due date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="setting3.png"/>
+					<br/>
+					<p style="padding: 5px 10px;">Send reminder mail on specific days before invoice payment due date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="setting4.png"/>
+					<br/>
+					<p style="padding: 5px 10px;">Send reminder mail till not come invoice payment due date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="setting5.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Various Payment Notification Reminder Mail </h3>
+					<p style="padding: 5px 10px;">Notification Generated mail on invoice due date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="mail1.png"/>
+					<br/>
+					<p style="padding: 5px 10px;">Notification Generated mail on specific before days after invoice due date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="mail2.png"/>
+					<br/>
+					<p style="padding: 5px 10px;">Notification generated mail after exceding invoice due date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="mail3.png"/>
+					<br/>
+					<p style="padding: 5px 10px;">Notification generated mail on till not come invoice due date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="mail4.png"/>
+					<br/>
+					<p style="padding: 5px 10px;">Notification generated mail on maintenance requested.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="mail4.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Available Property for Sale </h3>
+					<p style="padding: 5px 10px;"> Show list of available property for sale.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="sale_avl.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Available Property for Rent </h3>
+					<p style="padding: 5px 10px;"> Show list of available property for rent.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="rent_avl.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Attached Property Document and Images </h3>
+					<p style="padding: 5px 10px;">Attached various type of property document and images.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="gallery.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Property Sale Offer </h3>
+					<p style="padding: 5px 10px;"> Property sale offer details.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="so1.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Configure Property Sale Offer </h3>
+					<p style="padding: 5px 10px;">Configure available property sale offer.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="so2.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+<!--					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Allow Fine on Property Delay Payment </h3>-->
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Property Information </h3>
+<!--					<p style="padding: 5px 10px;">Delay property instalment payment fine (some percentage) of property price.</p>-->
+					<br/>
+<!--					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="delay.png"/>-->
+<!--					<br/>-->
+<!--					<p style="padding: 5px 10px;">Property Information.</p>-->
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="property_info.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Property Rent Offer </h3>
+					<p style="padding: 5px 10px;"> Property rent offer details.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="ro1.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Configure Property Rent Offer </h3>
+					<p style="padding: 5px 10px;">Configure available property rent offer.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="ro2.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Sale &amp; Rent Quick Search Property </h3>
+					<p style="padding: 5px 10px;"> Sale &amp; quick search property by name, category, sale/rent type, price range.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="search_property1.png"/>
+					<br/>
+					<p style="padding: 5px 10px;"> View details of searched property.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="search_open.png"/>
+				</div>
+			</div>
+
+<!--			<div>-->
+<!--				<div  style="margin-bottom: 40px;">-->
+<!--					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Sale Property Details </h3>-->
+<!--					<p style="padding: 5px 10px;"> Sale property details like property price, allow partial payment.</p>-->
+<!--					<br/>-->
+<!--					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="property.png"/>-->
+<!--				</div>-->
+<!--			</div>-->
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Rent Property Details </h3>
+					<p style="padding: 5px 10px;"> Rent property details  owner, property exist from date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="rent_property.png"/>
+					<br/>
+<!--					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="property2.png"/>-->
+				</div>
+			</div>
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> User Commission</h3>
+					<p style="padding: 5px 10px;"> Configure user commission.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="admin_commission.png"/>
+				</div>
+			</div>
+
+<!--			<div>-->
+<!--				<div  style="margin-bottom: 40px;">-->
+<!--					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Rent Property</h3>-->
+<!--					<p style="padding: 5px 10px;">Renter can view &amp; reserve only rent property.</p>-->
+<!--					<br/>-->
+<!--					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="renter_pro_kanban.png"/>-->
+<!--				</div>-->
+<!--			</div>-->
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Property Floor</h3>
+					<br/>
+<!--					<p style="padding: 5px 10px;">Renter can view &amp; reserve only rent property.</p>-->
+<!--					<br/>-->
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="floor.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Property Unit</h3>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="proprty1.png"/>
+				</div>
+			</div>
+
+<!--			<div>-->
+<!--				<div  style="margin-bottom: 40px;">-->
+<!--					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Reserve Property</h3>-->
+<!--					<p style="padding: 5px 10px;">Reserve rent property by renter click on "Reserve Rent Property" button. </p>-->
+<!--					<br/>-->
+<!--					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="r1.png"/>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			-->
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Reserve And Rent Property</h3>
+					<p style="padding: 5px 10px;">Reserve rent property by click on "Reserve Rent Property" button in property unit. </p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="property_reserve.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Create Contract</h3>
+					<p style="padding: 5px 10px;"> contract details create contract for rent by click on "Reserve Rent Property" button in Reserve rent property wizard. if it tax included then total will add it, renter portal user creating and notifing user by mail and portal user can create maintenance and notifing resposible person by mail and portal user can view his maintenance and contracts</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="reserve_wiz.png"/>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="portal0.png"/>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="portal1.png"/>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="portal2.png"/>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="portal3.png"/>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="portal4.png"/>
+				</div>
+			</div>
+
+<!--			<div>-->
+<!--				<div  style="margin-bottom: 40px;">-->
+<!--					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">  Created Contract Details</h3>-->
+<!--					<p style="padding: 5px 10px;">View created contract details.</p>-->
+<!--					<br/>-->
+<!--					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="r3.png"/>-->
+<!--				</div>-->
+<!--			</div>-->
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">  Created Contract Details</h3>
+					<p style="padding: 5px 10px;">View created contract details.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="contract_details.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">  In Contract Details</h3>
+					<p style="padding: 5px 10px;">Generated renter history with created contract details. created invoice from renter history ,  if cheque Boolean is true then creating  number of cheque payments and pdc , accured and depposit journals also creating, if the contract fees is greate amount than configured amount in res company then invoice will create against the difference.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="contract3.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">  Created Invoice Details</h3>
+					<p style="padding: 5px 10px;">View invoice details created from renter history and smart button to created contract details</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="unit2.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Scheduler for Rent Property Set to Available</h3>
+					<p style="padding: 5px 10px;">Rented property set to rentable state based on all expire contracts</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="scheduler1.png"/>
+				</div>
+			</div>
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;"> Scheduler for Contract Details Update State to Running/Expire</h3>
+					<p style="padding: 5px 10px;">Update State to Running state based on contract dates</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="scheduler2.png"/>
+				</div>
+			</div>
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Expired Contract details can cancel or terminate and rentable unit can renew</h3>
+					<p style="padding: 5px 10px;"> if terminated then stop upcoming payment paln and refund remaining invoice and release the unit(rentable),if cancel then cancel invoice and all payments and release the unit.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="cancel_terminate.png"/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="renew_unit.png"/>
+				</div>
+			</div>
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Expired Contract details Report and Runing Contract details Report</h3>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="expires_report.png"/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="runing_contract_rep.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">  Create Property Maintenance &amp; Invoice</h3>
+					<p style="padding: 5px 10px;">Create property maintenance and invoice.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="mt1.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">  Invoice from Maintenance </h3>
+					<p style="padding: 5px 10px;">Invoice created from property maintenance.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="mt2.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">  Maintenance in Property</h3>
+					<p style="padding: 5px 10px;">Counted maintenance in property.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="mt3.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">  Contract Status</h3>
+					<p style="padding: 5px 10px;">See the running and expired contracts.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="contract_status.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Expired Contract Mail</h3>
+					<p style="padding: 5px 10px;">Renter will received expired contract mail automatically.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="mail_template.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Renew Contract</h3>
+					<p style="padding: 5px 10px;">Renew contract from contract details by renter.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="renew_exp_conttact2.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Configure Renew Contract Date &amp; Amount</h3>
+					<p style="padding: 5px 10px;">Configure renew contract start date and end date and amount then renew expired contract.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="renew_contract_wizard3.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Contract Renew Done</h3>
+					<p style="padding: 5px 10px;">Contract renew done, now you can see updated this contract start date and expired date and status.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="renew_done_4.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Created Renter History &amp; Contract</h3>
+					<p style="padding: 5px 10px;">Created renter history with contract details in property after renew contract.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="update_renter_history.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Purchase Property </h3>
+					<p style="padding: 5px 10px;">Purchase property by purchaser by click on "Buy Now Property" button.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="pur1.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Configure Partial Payment &amp; Create Invoice </h3>
+					<p style="padding: 5px 10px;">Configure partial payment and create invoice according to partial payment.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="pur2.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Created Multiple Invoice </h3>
+					<p style="padding: 5px 10px;">Created multiple invoices with due date create after one month of date.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="pur4.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Invoice Validate &amp; Register Payment</h3>
+					<p style="padding: 5px 10px;">After sale the property then invoice validate and register payment then will generate commission line automatically.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="admin_inv_validate.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Generated Commission Lines </h3>
+					<p style="padding: 5px 10px;">Auto generated user commission lines after done register payment.
+					</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="admin_comm_imp_line.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Auto Generate Commission Worksheet </h3>
+					<p style="padding: 5px 10px;">Auto generate commission worksheet at the last day of month.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="worksheet_line.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Create Commission Bill </h3>
+					<p style="padding: 5px 10px;">Create commission bill from commission worksheet.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="create_commission_bill.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Created Commission Bill </h3>
+					<p style="padding: 5px 10px;">Created bill from commission worksheet.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="commission_bill.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">After Done Reserve &amp; Sale Property then View Status </h3>
+					<p style="padding: 5px 10px;">View reserved and sold property status, also view saleable and rentable property status.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="pro_kanban.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Rent Contract Report</h3>
+					<p style="padding: 5px 10px;">View and print expired contract report.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="c1.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Expired Contract Report</h3>
+					<p style="padding: 5px 10px;">View expired contract report and print report in pdf format.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="con_report.png"/>
+				</div>
+			</div>
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">View Contract List</h3>
+					<p style="padding: 5px 10px;">View expired contract list.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="expire_cotract_view.png"/>
+				</div>
+			</div>
+
+<!--			<div>-->
+<!--				<div  style="margin-bottom: 40px;">-->
+<!--					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">PDF Report</h3>-->
+<!--					<p style="padding: 5px 10px;">View pdf report for expired contracts.</p>-->
+<!--					<br/>-->
+<!--					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="pdf_repoer2.png"/>-->
+<!--				</div>-->
+<!--			</div>-->
+
+			<div>
+				<div  style="margin-bottom: 40px;">
+					<h3 class="oe_slogan" style="color: #091383;font-weight: initial ;margin: auto;">Property Analysis Report</h3>
+					<p style="padding: 5px 10px;">Sale and rent property analysis report.</p>
+					<br/>
+					<img class="img-responsive" style="display: block;width: 95%;margin: auto;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="c2.png"/>
+				</div>
+			</div>
+
+			<hr style="width: 80%;"></hr>
+			<div style="min-height: 20px;"></div>
+		</section>
+
+		<section class="oe_container lead title_box" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);text-align: center;">
+			<div>
+				<div>
+					<h2 class="oe_slogan title" style="margin-bottom: 10px;    background: -webkit-linear-gradient(#0e99ac, #4c4ca8);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+						<b> Our Services</b>
+					</h2>
+					<hr style="width: 80%;height: 1px;background: -webkit-gradient(linear, 0 0, 100% 0, from(#d58383), to(#5d4da6), color-stop(50%, #0b1255));"></hr>
+				</div>
+			</div>
+			<div class="row">
+				<a style="display: inline-grid;margin: 10px;"  class="col-sm">
+					<img class="img img-responsive" style="max-height: 100px;max-width: 100px;   margin: auto;" src="services/customization.png"/>
+					<span>Customization</span>
+				</a>
+				<a style="display: inline-grid; margin: 10px;" class="col-sm">
+					<img class="img img-responsive" style="max-height: 100px;max-width: 100px;margin: auto;" src="services/integration.png"/>
+					<span>Integration</span>
+				</a>
+				<a style="display: inline-grid;margin: 10px;" class="col-sm">
+					<img class="img img-responsive" style="max-height: 100px;max-width: 100px;margin: auto;" src="services/installation.png"/>
+					<span>Installation</span>
+				</a>
+			</div>
+			<div class="row">
+				<a style="display: inline-grid;margin: 10px;" class="col-sm">
+					<img class="img img-responsive" style="max-height: 100px;max-width: 100px;margin: auto;" src="services/create.gif"/>
+					<span>Create & Update</span>
+				</a>
+				<a style="display: inline-grid;margin: 10px;" class="col-sm">
+					<img class="img img-responsive" style="max-height: 100px;max-width: 100px;margin: auto;" src="services/migration.png"/>
+					<span>Migration</span>
+				</a>
+				<a style="display: inline-grid;margin: 10px;" class="col-sm">
+					<img class="img img-responsive" style="max-height: 100px;max-width: 100px;margin: auto;" src="services/support.png"/>
+					<span>Support</span>
+				</a>
+			</div>
+			<div >
+				<div >
+					<h2 class="oe_slogan title" style="margin-bottom: 10px;    background: -webkit-linear-gradient(#0e99ac, #4c4ca8);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+						<b> Get In Touch</b>
+					</h2>
+					<hr style="width: 80%;height: 1px;background: -webkit-gradient(linear, 0 0, 100% 0, from(#d58383), to(#5d4da6), color-stop(50%, #0b1255));"></hr>
+					<p class="oe_slogan" style="margin-bottom: 0px;margin-top: 15px;"> You will get 60 Days free support in case any bugs or issue. </p>
+					<div >
+						<p class="oe_slogan" style="margin: 0px;margin-right: 5px;"> For any query or support contact us without hesitation
+						on</p><a  href="mailto:info@softguidetech.com?Subject=Support%20Request%20for%20Odoo%20Property%20Rental%20Sale%20and%20Lease%20Management%20App" target="_top"> info@softguidetech.com</a>
+					</div>
+				</div>
+				<div>
+					<a  href="mailto:info@softguidetech.com?Subject=Support%20Request%20for%20Odoo%20Property%20Rental%20Sale%20and%20Lease%20Management%20App" target="_top"> <i class='fa fa-envelope' style="min-width: 50px;background: #12b9af;padding: 10px;font-size: 30px;color: #ffffff;border-radius: 10px;min-height: 50px;box-shadow: 5px 8px 10px #0d4a45;"></i></a>
+<!--					<a  href="#" target="_blank"> <i class='fa fa-facebook' style="min-width: 50px;background: #12b9af;padding: 10px;font-size: 30px;color: #ffffff;border-radius: 10px;min-height: 50px;box-shadow: 5px 8px 10px #0d4a45;"></i></a>-->
+<!--					<a  href="#" target="_blank"> <i class='fa fa-linkedin' style="min-width: 50px;background: #12b9af;padding: 10px;font-size: 30px;color: #ffffff;border-radius: 10px;min-height: 50px;box-shadow: 5px 8px 10px #0d4a45;"></i></a>-->
+<!--					<a  href="https://www.youtube.com/channel/UCrljky1245I7MhRNq_Tp46g" target="_blank"> <i class='fa fa-youtube' style="min-width: 50px;background: #12b9af;padding: 10px;font-size: 30px;color: #ffffff;border-radius: 10px;min-height: 50px;box-shadow: 5px 8px 10px #0d4a45;"></i></a>-->
+				</div>
+			</div>
+
+			<hr style="width: 80%;"></hr>
+			<div style="min-height: 20px;"></div>
+		</section>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+           <xpath expr="//div[@t-field='o.invoice_payment_term_id.note' and @name='payment_term']" position="before">
+            <h4 style="margin-top: 10px;">
+                <strong>Contracts Details</strong>
+            </h4>
+            <table class="table table-bordered contract-details">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 10%;">Contract</th>
+                        <th class="text-center" style="width: 15%;">Property</th>
+                        <th class="text-center" style="width: 5%;">Unit</th>
+                        <th class="text-center" style="width: 10%;">Start Date</th>
+                        <th class="text-center" style="width: 10%;">Expire Date</th>
+                        <th class="text-center" style="width: 10%;">Renewal Date</th>
+                        <th class="text-center" style="width: 10%;">Amount</th>
+                        <th class="text-center" style="width: 5%;">Number of Cheques</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-left contract-data">
+                            <span t-field="o.contract_id.name"/>
+                        </td>
+                        <td class="text-left contract-data">
+                            <span t-field="o.property_id.name"/>
+                        </td>
+                        <td class="text-left contract-data">
+                            <span t-field="o.unit_id.name"/>
+                        </td>
+                        <td class="text-left contract-data">
+                            <span t-field="o.contract_start_date"/>
+                        </td>
+                        <td class="text-left contract-data">
+                            <span t-field="o.contract_end_date"/>
+                        </td>
+                        <td class="text-left contract-data">
+                            <span t-field="o.contract_renewal_date"/>
+                        </td>
+                        <td class="text-left contract-data">
+                            <span t-field="o.contract_total_rent_amount"/>
+                        </td>
+                        <td class="text-left contract-data">
+                            <span t-field="o.number_of_cheque_payment"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </xpath>
+    </template>
+
+</odoo>

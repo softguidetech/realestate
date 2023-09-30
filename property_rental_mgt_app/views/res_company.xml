@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_res_company_form_inherit" model="ir.ui.view">
+            <field name="name">res.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='favicon']" position="after">
+                    <field name="is_real_estate_company"/>
+                </xpath>
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="fax"/>
+                    <field name="po_box"/>
+                </xpath>
+                <xpath expr="//notebook/page[@name='general_info']" position="after">
+                    <page string="Details in arabic" name="details_in_arabic">
+                        <group>
+                            <group>
+                                <field name="tel_arabic"/>
+                                <field name="fax_arabic"/>
+                                <field name="country_arabic"/>
+                                <field name="po_box_arabic"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Real Estate Info" name="general_info" attrs="{'invisible':[('is_real_estate_company', '!=', True)]}">
+                        <group>
+                            <group>
+                                <field name="contract_value"/>
+                                <field name="contract_partner_id" options="{'no_create_edit': True}"/>
+                                <field name="deposit_account_id" string="Deposit Account" options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="debit_account_id" string="Debit Account" options="{'no_create': True, 'no_create_edit': True}"/>
+                                <field name="credit_account_id" string="Credit Account" options="{'no_create': True, 'no_create_edit': True}"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

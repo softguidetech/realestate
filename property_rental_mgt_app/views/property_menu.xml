@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem
+                id="menu_property_root"
+                name="Real Estate"
+                web_icon="property_rental_mgt_app,static/description/icon.png"
+                groups="group_rent_payer,group_purchaser,group_manager"/>
+
+        <menuitem
+                id="menu_property"
+                name="All Properties"
+                parent="menu_property_root" sequence="1"
+                action="property_product_action"
+                groups="group_rent_payer,group_purchaser,group_manager"/>
+
+        <menuitem
+                id="menu_floor"
+                name="All Floors"
+                parent="menu_property" sequence="2"
+                action="property_floor_action"
+                groups="group_rent_payer,group_purchaser,group_manager"/>
+
+        <menuitem
+                id="menu_units"
+                name="All Units"
+                parent="menu_property" sequence="3"
+                action="property_unit_action"
+                groups="group_rent_payer,group_purchaser,group_manager"/>
+
+        <menuitem
+                id="menu_customer"
+                name="Customers"
+                parent="menu_property_root"
+                action="property_customer_action"
+                groups="group_manager"/>
+
+        <menuitem
+                id="menu_buyer"
+                parent="menu_property_root"
+                action="property_buyer_action"
+                name="Purchaser"
+                groups="group_purchaser,group_manager"/>
+
+        <menuitem
+                id="menu_rent_payer"
+                parent="menu_property_root"
+                action="property_rent_payer_action"
+                name="Renter"
+                groups="group_rent_payer,group_manager"/>
+
+
+        <menuitem
+                id="menu_property_contract_details"
+                name="Contracts Details"
+                parent="menu_property_root"
+                action="action_contract_details"
+                groups="property_rental_mgt_app.group_manager,property_rental_mgt_app.group_rent_payer"/>
+
+        <menuitem
+                id="menu_property_maintenance"
+                name="Property Maintenance"
+                parent="menu_property_root"
+                action="action_maintanance"
+                groups="property_rental_mgt_app.group_manager,property_rental_mgt_app.group_rent_payer"/>
+
+<!--&lt;!&ndash;        Create Maintenance Request Menu&ndash;&gt;-->
+<!--        <menuitem id="menu_portal_create_maintenance_request"-->
+<!--          name="Create Maintenance Request"-->
+<!--          parent="menu_property_root"-->
+<!--          action="action_create_maintenance_request"-->
+<!--          sequence="1"/>-->
+
+
+        <!-- Commission -->
+        <menuitem
+                id="menu_commission"
+                name="Commission"
+                parent="menu_property_root"/>
+
+        <menuitem
+                id="menu_commission_line"
+                name="Commission Lines"
+                parent="menu_commission"
+                action="action_commission"/>
+
+        <menuitem
+                id="menu_commission_worksheet"
+                name="Commission Worksheet"
+                parent="menu_commission"
+                action="action_commission_worksheet"
+                groups="group_manager"/>
+
+
+        <!-- Configuration -->
+        <menuitem
+                id="menu_property_config"
+                name="Configuration"
+                parent="menu_property_root"
+                groups="group_manager"/>
+
+        <menuitem
+                id="menu_property_configuration"
+                name="Property Configuration"
+                parent="menu_property_config"/>
+
+        <menuitem
+                id="menu_partial_payment"
+                name="Partial Payment"
+                parent="menu_property_configuration"
+                action="action_partial_payment"/>
+
+        <menuitem
+                id="menu_property_facility"
+                name="Property Facility"
+                parent="menu_property_configuration"
+                action="action_property_facility"/>
+        <menuitem
+                id="menu_unit_classification"
+                name="Unit Classification"
+                parent="menu_property_configuration"
+                action="action_unit_classification"/>
+
+        <menuitem
+                id="menu_property_type"
+                name="Property Type"
+                parent="menu_property_configuration"
+                action="action_property_type"/>
+
+        <menuitem
+                id="menu_property_contract"
+                name="Contracts"
+                parent="menu_property_configuration"
+                action="action_rent_contract"/>
+
+        <!-- Report -->
+        <menuitem
+                id="menu_property_report"
+                name="Report"
+                parent="menu_property_root"
+                groups="group_rent_payer,group_purchaser,group_manager"/>
+
+        <menuitem
+                id="menu_expired_contract"
+                name="Expired Contracts Report"
+                parent="menu_property_report"
+                action="action_expired_report"
+                groups="group_rent_payer,group_purchaser,group_manager"/>
+
+        <menuitem
+                id="menu_unit_report_wizard_action"
+                name="Reserved Unit Report"
+                parent="menu_property_report"
+                action="action_unit_report_wizard"
+                groups="group_rent_payer,group_purchaser,group_manager"/>
+
+        <menuitem
+                id="menu_property_analysis_report"
+                name="Property Analysis Report"
+                parent="menu_property_report"
+                action="property_analysis_action"
+                groups="group_rent_payer,group_purchaser,group_manager"/>
+
+        <menuitem
+                id="menu_sale_rent_property"
+                name="All Properties"
+                parent="menu_property"
+                action="property_product_action"
+                groups="base.group_no_one"/>
+
+        <menuitem
+                id="menu_sale_property"
+                name="Available Sale Properties"
+                parent="menu_property"
+                action="sale_property_action"
+                groups="base.group_no_one"/>
+
+        <menuitem
+                id="menu_rent_property"
+                name="Available Rent Properties"
+                parent="menu_property"
+                action="rent_property_action"
+                groups="base.group_no_one"/>
+
+<!--        <menuitem-->
+<!--                id="menu_search_property"-->
+<!--                name="Quick Search"-->
+<!--                parent="menu_property"-->
+<!--                action="action_property_search"-->
+<!--                groups="group_rent_payer,group_purchaser,group_manager"-->
+<!--        />-->
+
+        <menuitem
+                id="menu_search_unit"
+                name="Unit Quick Search"
+                parent="menu_property"
+                action="action_unit_search"
+                groups="group_rent_payer,group_purchaser,group_manager"/>
+
+        <menuitem
+                id="menu_property_sale_offer"
+                name="Property Sale Offer"
+                parent="menu_property"
+                action="action_property_sale_offer"
+                groups="base.group_no_one"/>
+
+        <menuitem
+                id="menu_property_rent_offer"
+                name="Property Rent Offer"
+                parent="menu_property"
+                action="action_property_rent_offer"
+                groups="group_rent_payer,group_manager"/>
+
+        <menuitem
+                id="menu_delay_fine"
+                name="Delay Payment Fine"
+                parent="menu_property_configuration"
+                action="action_delay_fine"/>
+
+    </data>
+</odoo>

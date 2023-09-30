@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_form_property" model="ir.ui.view">
+        <field name="name">res.config.settings.form.property</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="26"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div data-string="Property" string="Property" data-key="property" groups="property_rental_mgt_app.group_manager">
+                    <h2>Property Reminder Mail Configuration</h2>
+                    <div class="row mt16 o_settings_container" name="setting_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="reminder_on_due_date"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="reminder_on_due_date"/>
+                                <div class="text-muted">
+                                    Reminder Mail on Invoice/Instalment Payment Due Date. 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="reminder_before_due_date"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="reminder_before_due_date"/>
+                                <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                                <div class="text-muted">
+                                    Reminder Mail on Specific Days Before Due Date. 
+                                </div>
+                                <div class="content-group" attrs="{'invisible': [('reminder_before_due_date', '=', False)],'required':[('reminder_before_due_date','=',True)]}">
+                                    <div class="row mt16">
+                                        <label for="reminder_before_days" class="col-lg-4 o_light_label"/>
+                                        <field name="reminder_before_days"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="reminder_till_come_due_date"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="reminder_till_come_due_date"/>
+                                <div class="text-muted">
+                                    Reminder Mail Every Day while Till not Come Due Date.
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="reminder_after_due_date"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="reminder_after_due_date" string="Send Mail After Invoice Due Date"/>
+                                <div class="text-muted">
+                                    Send Mail Everyday After Exceding Invoice Due Date
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_property_configuration" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'property_rental_mgt_app'}</field>
+    </record>
+
+    <menuitem id="menu_property_general_settings" name="Settings" parent="menu_property_config" sequence="0" 
+        action="action_property_configuration" 
+        groups="base.group_system"
+        />
+
+</odoo>

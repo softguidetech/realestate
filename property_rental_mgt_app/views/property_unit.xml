@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="property_unit_tree">
+            <field name="name">property.unit.tree</field>
+            <field name="model">property.unit</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="state=='rent'" decoration-danger="state in ['reserve','sold','cancel']">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="company_id"/>
+                    <field name="property_id"/>
+                    <field name="floor_id"/>
+                    <field name="unit_area_feet"/>
+                    <field name="unit_area_meter"/>
+                    <field name="unit_rent_value"/>
+                    <field name="state"/>
+                    <button class="oe_highlight" type="object" icon="fa-home" name="reserve_property"
+                            string="Reserve and Rent unit" states="rent"/>
+                    <button name="renew_unit" type="object" string="Renew" class="oe_highlight"
+                            attrs="{'invisible': ['|',('state', '!=', 'reserve'), ('is_contract_expired', '=', False)]}"/>
+                    <field name="is_contract_expired" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="property_unit_form">
+            <field name="name">property.unit.form</field>
+            <field name="model">property.unit</field>
+            <field name="arch" type="xml">
+                <form string="Property Unit">
+                    <header>
+                        <button class="oe_highlight" type="object" name="button_confirm" string="Confirm Unit"
+                                icon="fa-check" states="draft" groups="property_rental_mgt_app.group_manager"/>
+                        <button class="oe_highlight" type="object" icon="fa-home" name="reserve_property"
+                                string="Reserve and Rent unit" states="rent"/>
+                        <button string="Reset to Draft" type="object" name="reset_to_draft" class="oe_highlight"
+                                attrs="{'invisible': [('state', '!=', 'rent')]}"/>
+                        <button name="renew_unit" type="object" string="Renew" class="oe_highlight"
+                                attrs="{'invisible': ['|',('state', '!=', 'reserve'), ('is_contract_expired', '=', False)]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sale,rent,reserve,sold"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+<!--                            <button type="object" class="oe_stat_button"-->
+<!--                                    icon="fa-file-text" attrs="{'invisible':[('invoice_count','=',0)]}"-->
+<!--                                    name="action_view_invoice">-->
+<!--                                <div class="o_form_field o_stat_info">-->
+<!--                                    <span class="o_stat_value">-->
+<!--                                        <field name="invoice_count"/>-->
+<!--                                    </span>-->
+<!--                                    <span class="o_stat_text">Invoices</span>-->
+<!--                                </div>-->
+<!--                            </button>-->
+                            <button type="object" class="oe_stat_button"
+                                    icon="fa-file-text" attrs="{'invisible':[('contract_count','=',0)]}"
+                                    name="action_view_contracts">
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="contract_count"/>
+                                    </span>
+                                    <span class="o_stat_text">Contracts</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" string="Floor Name"/>
+                            <h1>
+                                <field name="name" class="oe_inline" required="1" placeholder='Name eg. Unit 201'
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code" placeholder='Code eg. 201'
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="company_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="currency_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="property_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="floor_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="property_book_for" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="classification_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       options="{'no_create': True, 'no_open': True}"/>
+                                <field name="deposit" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="unit_rent_value" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="monthly_rent" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       force_save="1"/>
+                            </group>
+                            <group>
+                                <field name="unit_area_feet" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="unit_area_meter" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="owner_id" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="dewa_number"/>
+                                <field name="is_contract_expired" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="rent_payer" string="Renter Contract Details"
+                                  groups="property_rental_mgt_app.group_manager,property_rental_mgt_app.group_rent_payer">
+                                <field name="renter_history_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree create="false" edit="false">
+                                        <field name="reference" string="Contract"/>
+                                        <field name="renter_id"/>
+                                        <field name="owner_id" string="Owner"/>
+                                        <field name="from_date" string="Start Date"/>
+                                        <field name="to_date" string="Expired  Date"/>
+                                        <field name="property_id"/>
+                                        <field name="unit_id"/>
+                                        <field name="rent_price"/>
+                                        <field name="contract_month" string="Months"/>
+                                        <field name="deposite"/>
+                                        <field name="offer_price"/>
+                                        <field name="invoice_id"/>
+                                        <field name="state"/>
+                                        <field name="is_invoice" invisible="1"/>
+                                        <field name="contract_id" invisible="1"/>
+                                        <button string="Create Invoice" class="oe_highlight" name="create_rent_invoice"
+                                                type="object" attrs="{'invisible': [('is_invoice','=',True)]}"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page name="page_rent_offer" string="Rent Offer"
+                                  groups="property_rental_mgt_app.group_manager,property_rental_mgt_app.group_rent_payer">
+                                <field name="rent_offer_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree editable="bottom">
+                                        <field name="offer_id"/>
+                                        <field name="property_id"/>
+                                        <field name="partner_id" string="Renter"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="duration_month"/>
+                                        <field name="duration_days"/>
+                                        <field name="property_price"/>
+                                        <field name="discount_offer" string="Discount(%)"/>
+                                        <field name="offer_price"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Documents" name="page_document">
+                                <field name="document_ids" widget="many2many" options="{'not_delete': True}">
+                                    <kanban quick_create="false" create="true" delete="true">
+                                        <field name="id"/>
+                                        <field name="name"/>
+                                        <!-- <field name="activity_ids"/> -->
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_global_click" style="max-width: 200px">
+                                                    <div class="o_kanban_record_top">
+                                                        <img t-att-src="kanban_image('unit.document', 'file', record.id.raw_value)"
+                                                             height="40" t-att-alt="record.id.raw_value"
+                                                             width="40"
+                                                             class="oe_avatar oe_kanban_avatar_smallbox mb0"/>
+                                                        <div class="o_kanban_record_headings ml8">
+
+                                                            <strong class="o_kanban_record_title">
+                                                                <field name="name"/>
+                                                            </strong>
+                                                        </div>
+                                                        <a t-if="! read_only_mode" type="delete" class="text-danger">
+                                                            <i class="fa fa-times" title="delete"></i>
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </page>
+                            <page name="accounting" string="Accounting"
+                                  groups="property_rental_mgt_app.group_manager,property_rental_mgt_app.group_rent_payer">
+                                <group colspan="2" string="Accounting">
+                                    <field name="analytic_account_id"/>
+                                    <field name="account_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                        <field name="note" placeholder="Description..."/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="property_unit_search_view_inherit" model="ir.ui.view">
+            <field name="name">property.unit.search</field>
+            <field name="model">property.unit</field>
+            <field name="arch" type="xml">
+                <search string="Unit Search">
+                    <field name="property_id"/>
+                    <field name="floor_id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="deposit"/>
+                    <field name="monthly_rent"/>
+                    <field name="unit_rent_value"/>
+                    <separator/>
+                    <group expand="1" string="Group By">
+                        <filter name="groupby_property" context="{'group_by' : 'property_id'}" string="Property"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="property_unit_action" model="ir.actions.act_window">
+            <field name="name">Property Unit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.unit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_groupby_property': 1}</field>
+
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+       <record model="ir.ui.view" id="property_search_tree">
+              <field name="name">property.search.tree</field>
+              <field name="model">property.search</field>
+              <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Search by Name"/>
+                    <field name="filter_by"/>
+                    <field name="price_start"/>
+                    <field name="price_end"/>
+                    <field name="property_type_id"/>
+                    <field name="property_list_ids"/>
+                </tree>
+             </field>
+        </record>
+
+        <record model="ir.ui.view" id="property_search_form">
+              <field name="name">property.search.form</field>
+              <field name="model">property.search</field>
+              <field name="arch" type="xml">
+                <form string="Property Offer">
+                    <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Search Property by Name "/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Galaxy Residency" class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="filter_by" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="property_type_id"/>
+                            <label for="price_start" />
+                            <div>
+                                <div class="o_row">
+                                    Start<field name="price_start"/>
+                                    <strong><![CDATA[&nbsp;]]>
+                                    </strong>Stop<field name="price_end"/>
+                                </div>
+                            </div>
+
+                            
+                        </group>
+                    </group>
+
+
+                    <button name="search_property" type="object" string="Search Property" icon="fa-search" class="oe_highlight" default_focus="1"/>
+                    &#x2063;&#x2063;&#x2063;&#x2063;&#x2063;
+
+                    <button name="clear" type="object" string="Clear" icon="fa-remove" class="oe_highlight"/>
+
+                    <br/><br/>
+                    <field name="property_list_ids">
+                        <tree>
+                            <field name="property_id"/>
+                            <field name="property_type_id" string="Category"/>
+                            <field name="property_for"/>
+                            <field name="owner_id"/>
+                            <field name="salesperson_id"/>
+                            <field name="city"/>
+                            <field name="state_id"/>
+                            <field name="country_id"/>
+                            <field name="state"/>
+                            <field name="price"/>
+                            <button string="Show Property" class="oe_highlight" name="view_searched_property" type="object"/>
+                        </tree>
+                    </field>
+                    
+                    </sheet>
+                </form>
+             </field>
+        </record>
+
+        <record id="action_property_search" model="ir.actions.act_window">
+            <field name="name">Property Quick Search</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.search</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="view_type">form</field> -->
+        </record>
+
+</data>
+</odoo>

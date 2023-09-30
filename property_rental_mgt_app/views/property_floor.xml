@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="property_floor_tree">
+            <field name="name">property.floor.tree</field>
+            <field name="model">property.floor</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="company_id"/>
+                    <field name="currency_id"/>
+                    <field name="property_id"/>
+                    <field name="number_of_unit"/>
+                    <field name="floor_area_feet"/>
+                    <field name="floor_area_meter"/>
+                    <field name="floor_rent_value"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="property_floor_form">
+            <field name="name">property.floor.form</field>
+            <field name="model">property.floor</field>
+            <field name="arch" type="xml">
+                <form string="Property Floor">
+                    <header>
+                        <button class="oe_highlight" type="object" name="confirm" string="Confirm" states="draft"/>
+                        <button type="object" name="reset" string="Reset to draft" states="register"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,register"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Floor Name"/>
+                            <h1>
+                                <field name="name" class="oe_inline" required="1" placeholder='Name eg. Floor 1'/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code" placeholder='Code eg. 01'
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="number_of_unit" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="company_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="currency_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="property_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="floor_area_feet" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="floor_area_meter" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="floor_rent_value" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page name="floor_property_unit" string="Property Units" autofocus="autofocus">
+                                <field name="unit_ids" readonly="1">
+                                    <tree create="false" edit="false">
+                                        <field name="name"/>
+                                        <field name="code"/>
+                                        <field name="company_id"/>
+                                        <field name="currency_id"/>
+                                        <field name="property_id"/>
+                                        <field name="floor_id"/>
+                                        <field name="unit_area_feet"/>
+                                        <field name="unit_area_meter"/>
+                                        <field name="unit_rent_value"/>
+<!--                                        <button class="oe_highlight" type="object" icon="fa-home" name="reserve_property"-->
+<!--                                string="Reserve and Rent unit" states="rent"/>-->
+<!--                                        <button name="renew_unit" type="object" string="Renew" class="oe_highlight"-->
+<!--                        attrs="{'invisible': [('state', '=', 'reserve'), ('is_contract_expired', '!=', True)]}"/>-->
+<!--                                        <field name="is_contract_expired" invisible="1"/>-->
+                                    </tree>
+                                </field>
+
+                            </page>
+                            <page name="accounting" string="Accounting">
+                                <group colspan="2" string="Accounting">
+                                    <field name="analytic_account_id"/>
+                                    <field name="account_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                        <field name="note" placeholder="Description..."/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="property_floor_search_view_inherit" model="ir.ui.view">
+            <field name="name">property.floor.search</field>
+            <field name="model">property.floor</field>
+            <field name="arch" type="xml">
+                <search string="Floor Search">
+                    <field name="property_id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <separator/>
+                    <group expand="1" string="Group By">
+                        <filter name="groupby_property" context="{'group_by' : 'property_id'}" string="Property"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="property_floor_action" model="ir.actions.act_window">
+            <field name="name">Property Floor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.floor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_groupby_property': 1}</field>
+        </record>
+
+    </data>
+</odoo>

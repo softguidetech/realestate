@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+       <record model="ir.ui.view" id="property_sale_offer_tree">
+              <field name="name">property.sale.offer.tree</field>
+              <field name="model">sale.offer</field>
+              <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="duration_month"/>
+                    <field name="duration_days"/>
+                    <field name="discount_offer"/>
+                    <field name="state"/>
+                    <field name="note"/>
+                </tree>
+             </field>
+        </record>
+
+        <record model="ir.ui.view" id="property_offer_form">
+              <field name="name">property.sale.offer.form</field>
+              <field name="model">sale.offer</field>
+              <field name="arch" type="xml">
+                <form string="Property Offer">
+                    <header>
+                        <button class="oe_highlight" type="object" name="confirm_sale_offer" string="Confirm" states="draft"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
+                    </header>
+                    <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Sale Offer Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. New Year Offer" class="oe_inline" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group>
+                            
+                            <label for="duration_month" string="Offer Duration"/>
+                            <div>
+                              <field name="duration_month" class="oe_inline" /> 
+                              <span class="ml8">Months</span>
+                              &#x2063;&#x2063;&#x2063; <field name="duration_days" class="oe_inline" />
+                              <span class="ml8">Days</span>
+                            </div>
+                            <field name="discount_offer"/>
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Description..."/>
+                    </sheet>
+                </form>
+             </field>
+        </record>
+
+        <record id="action_property_sale_offer" model="ir.actions.act_window">
+            <field name="name">Property Sale Offer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.offer</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="view_type">form</field> -->
+        </record>
+
+       <record model="ir.ui.view" id="property_rent_offer_tree">
+              <field name="name">property.rent.offer.tree</field>
+              <field name="model">rent.offer</field>
+              <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="duration_month"/>
+                    <field name="duration_days"/>
+                    <field name="discount_offer"/>
+                    <field name="state"/>
+                    <field name="note"/>
+                </tree>
+             </field>
+        </record>
+
+        <record model="ir.ui.view" id="property_rent_offer_form">
+              <field name="name">property.offer.rent.form</field>
+              <field name="model">rent.offer</field>
+              <field name="arch" type="xml">
+                <form string="Property Rent Offer">
+                    <header>
+                        <button class="oe_highlight" type="object" name="confirm_rent_offer" string="Confirm" states="draft"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
+                    </header>
+                    <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Rent Offer Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. New Year Offer" class="oe_inline" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group>
+                            
+                            <label for="duration_month" string="Duration"/>
+                            <div>
+                              <field name="duration_month" class="oe_inline" /> 
+                              <span class="ml8">Months</span>
+                              &#x2063;&#x2063;&#x2063;<field name="duration_days" class="oe_inline" />
+                              <span class="ml8">Days</span>
+                            </div>
+                            <field name="discount_offer"/>
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Description..."/>
+                    </sheet>
+                </form>
+             </field>
+        </record>
+
+        <record id="action_property_rent_offer" model="ir.actions.act_window">
+            <field name="name">Property Rent Offer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rent.offer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</data>
+</odoo>

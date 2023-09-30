@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <!--form view of the wizard-->
+        <record id="view_property_reservation_report_wizard_form" model="ir.ui.view">
+            <field name="name">unit.report.report.wizard.form</field>
+            <field name="model">unit.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Unit Report">
+                    <group>
+                        <group>
+                            <field name="property_id" domain="[('is_property','=','True')]" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="unit_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Print as Excel" type="object" name="print_units_report_xlsx"
+                                class="oe_highlight"/>
+                        <button string="Cancel" type="object" name="print_cancel" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- action -->
+        <record id="action_unit_report_wizard" model="ir.actions.act_window">
+            <field name="name">Reserved Unit Report Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">unit.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
