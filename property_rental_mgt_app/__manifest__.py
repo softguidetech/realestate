@@ -4,6 +4,8 @@
     'name': 'Real Estate',
     'author': "SGT",
     'version': '16.0.1.4',
+    'price': 233.00,
+    'currency': "EUR",
     # 'live_test_url':'https://youtu.be/qp0V-bN-Poo',
     "images":['static/description/icon.png'],
     'summary': 'Apps for sale property management rent property management real estate property management real estate lease management property lease management property booking property rental property rental invoice housing rental housing lease house rental',
