@@ -8,8 +8,8 @@
     'currency': "EUR",
     # 'live_test_url':'https://youtu.be/qp0V-bN-Poo',
     "images":['static/description/icon.png'],
-    'summary': 'Apps for sale property management rent property management real estate property management real estate lease management property lease management property booking property rental property rental invoice housing rental housing lease house rental',
-    'description': "Sale & Rent property management ,create contract, renew contract, allow partial payment for sale property and invoice due date auto generate between one month interval, maintain property maintenance, user commission calculate at register payment time base on property, automatically generate commission worksheet at last of day of the month. view and print contract expired report, property analysis report.",
+    'summary': 'Apps for rent property management real estate property management real estate lease management property lease management property booking property rental property rental invoice housing rental housing lease house rental',
+    'description': "Rent property management ,create contract, renew contract, allow partial payment and invoice due date auto generate between one month interval, maintain property maintenance, user commission calculate at register payment time base on property, automatically generate commission worksheet at last of day of the month. view and print contract expired report, property analysis report.",
     'depends': ['product', 'analytic', 'sale', 'account', 'stock', 'repair', 'portal','report_xlsx'],
     # "license": "",
     'data': [
