@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Real Estate Renter Info" name="real_estate_renter_info"
+                          attrs="{'invisible': [('is_real_estate_company', '=', False)]}"
+                          groups="realestate_sgt.group_rent_payer,realestate_sgt.group_purchaser,realestate_sgt.group_manager"
+                          readonly="1">
+                        <group>
+                            <field name="is_real_estate_company" invisible="1" force_save="1"/>
+                            <field name="is_deposit" invisible="1" force_save="1"/>
+                            <field name="is_accrued" invisible="1" force_save="1"/>
+                            <field name="is_credit_note" invisible="1" force_save="1"/>
+                            <field name="contract_id" readonly="1" force_save="1"/>
+                            <field name="property_id" readonly="1"/>
+                            <field name="unit_id" readonly="1"/>
+                            <field name="contract_start_date" readonly="1"/>
+                            <field name="contract_end_date" readonly="1"/>
+                            <field name="contract_renewal_date" readonly="1"/>
+                            <field name="contract_total_rent_amount" readonly="1"/>
+                            <field name="number_of_cheque_payment" readonly="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

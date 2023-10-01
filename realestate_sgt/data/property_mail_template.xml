@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Expired Contract Mail Template -->
+        <record id="rental_contract_template" model="mail.template">
+            <field name="name">Expired Rental Contract</field>
+            <field name="subject">Expired Rental Contract [${object.name}]</field>
+            <field name="email_from">{{ (object.property_id.salesperson_id.partner_id.email_formatted or
+                user.email_formatted) }}
+            </field>
+            <field name="email_to">{{object.partner_id.email}}</field>
+            <field name="model_id" ref="realestate_sgt.model_contract_details"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">{{object.partner_id.lang}}</field>
+            <field name="body_html"><![CDATA[
+                <p>Dear <t t-out="object.partner_id.name"/>.
+                <p>
+                    Your Contract is expired for This Property. <br/>Please renew Contract before this date <t t-out="object.to_date"/>. <h3>Contract : <t t-out="object.contract_id.name"/> <br/> Property : <t t-out="object.property_id.name"/><br/>Property Rent : <t t-out="object.rent_price"/> <br/> Expired Date : <t t-out="object.renewal_date"/></h3>
+                </p>
+                ]]>
+
+            </field>
+        </record>
+
+        <record id="payment_expired_template" model="mail.template">
+            <field name="name">Expired Cheque Payment</field>
+            <field name="model_id" ref="realestate_sgt.model_account_payment"/>
+            <field name="email_from">{{ (object.property_id.salesperson_id.partner_id.email) }}</field>
+            <field name="email_to">{{ctx['receiver']}},</field>
+            <field name="subject">Expired Payment Cheque [${object.ref}]</field>
+            <field name="body_html"><![CDATA[]]></field>
+        </record>
+
+
+        <!-- Reserved Rent Property-->
+        <record id="property_reserved_template" model="mail.template">
+            <field name="name">Property Reserved for Rent</field>
+            <field name="model_id" ref="realestate_sgt.model_property_book"/>
+            <field name="subject">Reserved Property for Rent</field>
+            <field name="email_from">{{ (object.property_id.salesperson_id.partner_id.email_formatted or
+                user.email_formatted) }}
+            </field>
+            <field name="email_to">{{object.renter_id.email}}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" width="590"
+                       style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                    <tr>
+                        <td valign="top" style="font-size: 13px;">
+                            <div>
+                                Dear<t t-out="object.renter_id.name"/>,
+                                <br/>
+                                <br/>
+                                You are Successfully Reserved Property for Rent..!
+                                <br/>
+                                Thanks,
+                                <br/>
+                                <br/>
+                                <t t-out="user.signature"></t>
+                                <br/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- Purchased Property Template-->
+        <record id="property_purchased_template" model="mail.template">
+            <field name="name">Booked Property for Purchase</field>
+            <field name="model_id" ref="realestate_sgt.model_property_buy"/>
+            <field name="subject">Booked Property for Purchase</field>
+            <field name="email_from">{{ (object.property_id.salesperson_id.partner_id.email_formatted or
+                user.email_formatted)}}
+            </field>
+            <field name="email_to">{{object.purchaser_id.email}}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" width="590"
+                       style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                    <tr>
+                        <td valign="top" style="font-size: 13px;">
+                            <div>
+                                Dear<t t-out="object.purchaser_id.name"/>,
+                                <br/>
+                                <br/>
+                                You are Successfully Booked Property ..!
+                                <br/>
+                                Thanks,
+                                <br/>
+                                <br/>
+                                <t t-out="user.signature"></t>
+                                <br/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- yearly_maintainance_template -->
+        <record id="yearly_maintainance_template" model="mail.template">
+            <field name="name">Property Yearly Maintainance</field>
+            <field name="model_id" ref="realestate_sgt.model_contract_details"/>
+            <field name="subject">Property Yearly Maintainance Mail</field>
+            <field name="email_from">{{(object.property_id.salesperson_id.partner_id.email_formatted or
+                user.email_formatted)}}
+            </field>
+            <field name="email_to">{{object.partner_id.email}}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" width="590"
+                       style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                    <tr>
+                        <td valign="top" style="font-size: 13px;">
+                            <div>
+                                Dear<t t-out="object.partner_id.name"/>,
+                                <br/>
+                                <br/>
+                                You will do yearly Property Maintainance ..!
+                                <br/>
+                                Thanks,
+                                <br/>
+                                <br/>
+                                <t t-out="user.signature"></t>
+                                <br/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- monthly_maintainance_template -->
+        <record id="monthly_maintainance_template" model="mail.template">
+            <field name="name">Property Monthly Maintainance</field>
+            <field name="model_id" ref="realestate_sgt.model_contract_details"/>
+            <field name="subject">Property Monthly Maintainance Mail</field>
+            <field name="email_from">{{ (object.property_id.salesperson_id.partner_id.email_formatted or
+                user.email_formatted)}}
+            </field>
+            <field name="email_to">{{object.partner_id.email}}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" width="590"
+                       style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                    <tr>
+                        <td valign="top" style="font-size: 13px;">
+                            <div>
+                                Dear<t t-out="object.partner_id.name"/>,
+                                <br/>
+                                <br/>
+                                You will do monthly Property Maintainance ..!
+                                <br/>
+                                Thanks,
+                                <br/>
+                                <br/>
+                                <t t-out="user.signature"></t>
+                                <br/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- reminder based on configuration -->
+        <!-- on due date reminder mail -->
+        <record id="due_date_template" model="mail.template">
+            <field name="name">Property Due Date Reminder Mail</field>
+            <field name="model_id" ref="realestate_sgt.model_account_move"/>
+            <field name="email_from">{{(object.property_id.salesperson_id.partner_id.email_formatted or
+                user.email_formatted)}}
+            </field>
+            <field name="email_to">{{object.partner_id.email}}</field>
+            <field name="subject">Payment Reminder on Invoice Due Date</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" width="590"
+                       style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                    <tr>
+                        <td valign="top" style="font-size: 13px;">
+                            <div>
+                                Dear<t t-out="object.partner_id.name"/>,
+                                <br/>
+                                <br/>
+                                Remind You for Installment/invoice Property Payment.! Today is last Day, after today you
+                                are exceding Payment Due Date
+                                <br/>
+                                <br/>Due Date :<t t-out="object.invoice_date_due"/>.
+                                <br/>
+                                <br/>
+                                Thanks,
+                                <br/>
+                                <br/>
+                                <t t-out="user.signature"></t>
+                                <br/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- Till not come due date reminder mail -->
+        <record id="till_not_come_due_date_reminder_template" model="mail.template">
+            <field name="name">Reminder on Till Not Come Payment Due Date</field>
+            <field name="model_id" ref="realestate_sgt.model_account_move"/>
+            <field name="subject">Reminder on Till Not Come Property Payment Due Date</field>
+            <field name="email_from">{{ (object.property_id.salesperson_id.partner_id.email_formatted or
+                user.email_formatted) }}
+            </field>
+            <field name="email_to">{{object.partner_id.email}}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" width="590"
+                       style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                    <tr>
+                        <td valign="top" style="font-size: 13px;">
+                            <div>
+                                Dear<t t-out="object.partner_id.name"/>,
+                                <br/>
+                                <br/>
+                                Remind You for Installment/invoice Property Payment.!
+                                <br/>
+                                <br/>Due Date :<t t-out="object.invoice_date_due"/>.
+                                <br/>
+                                <br/>
+                                Thanks,
+                                <br/>
+                                <br/>
+                                <t t-out="user.signature"></t>
+                                <br/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- Before days invoice due date reminder mail -->
+        <record id="before_days_on_due_date_reminder_template" model="mail.template">
+            <field name="name">Reminder Before Days on Payment Due Date</field>
+            <field name="model_id" ref="realestate_sgt.model_account_move"/>
+            <field name="subject">Reminder Before Days Property Payment Due Date</field>
+            <field name="email_from">{{ (object.property_id.salesperson_id.partner_id.email_formatted or
+                user.email_formatted) }}
+            </field>
+            <field name="email_to">{{object.partner_id.email}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" width="590"
+                       style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                    <tr>
+                        <td valign="top" style="font-size: 13px;">
+                            <div>
+                                Dear<t t-out="object.partner_id.name"/>,
+                                <br/>
+                                <br/>
+                                Remind You for Installment/invoice Property Payment.! Some Days Remaining for Due
+                                Payment.
+                                <br/>
+                                <br/>Due Date :<t t-out="object.invoice_date_due"/>.
+                                <br/>
+                                <br/>
+                                Thanks,
+                                <br/>
+                                <br/>
+                                <t t-out="user.signature"></t>
+                                <br/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- after days invoice due date reminder mail -->
+        <record id="after_days_on_due_date_template" model="mail.template">
+            <field name="name">Reminder After Exceding Payment Due Date</field>
+            <field name="model_id" ref="realestate_sgt.model_account_move"/>
+            <field name="subject">Reminder After Going Payment Due Date</field>
+            <field name="email_from">{{ (object.property_id.salesperson_id.partner_id.email_formatted or
+                user.email_formatted)}}
+            </field>
+            <field name="email_to">{{object.partner_id.email}}</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0" width="590"
+                       style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                    <tr>
+                        <td valign="top" style="font-size: 13px;">
+                            <div>
+                                Dear<t t-out="object.partner_id.name"/>,
+                                <br/>
+                                <br/>
+                                Your Installment/invoice Payment Due Date already Exceding.! please do the Installment
+                                Payment Immediately.
+                                <br/>
+                                <br/>Due Date :
+                                <t t-out="object.invoice_date_due"/>
+                                .
+                                <br/>
+                                <br/>
+                                Thanks,
+                                <br/>
+                                <br/>
+                                <t t-out="user.signature or ''"></t>
+                                <br/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- Email Template -->
+        <record id="maintenance_request_notification_template" model="mail.template">
+            <field name="name">Maintenance Request Notification</field>
+            <field name="email_from">${object.env.user.email}</field>
+            <field name="email_from">{{ (object.env.user.email) }}</field>
+            <field name="subject">Maintenance Request Notification</field>
+            <field name="lang">{{ (object.env.user.lang) }}</field>
+            <field name="model_id" ref="model_property_maintanance"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                <![CDATA[
+        <p>Hello,</p>
+        <p>A maintenance request has been submitted for the property: <strong><t t-esc="object.property_id.name"/></strong>.</p>
+        <p>Details:</p>
+        <ul>
+            <li><strong>Requester:</strong> <t t-esc="object.requister_id.name"/></li>
+            <li><strong>Date:</strong> <t t-esc="object.date"/></li>
+            <li><strong>Operation:</strong> <t t-esc="object.operation"/></li>
+        </ul>
+        <p>Description:</p>
+        <p><t t-raw="object.description"/></p>
+        <p>Regards,</p>
+        <p>Your Company</p>
+        ]]>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
