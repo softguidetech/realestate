@@ -2,7 +2,7 @@
 
 {
     'name': 'Real Estate',
-    'author': "Soft Guide Technology",
+    'author': "SGT",
     'version': '16.0.1.4',
     'price': 239.00,
     'currency': "EUR",
