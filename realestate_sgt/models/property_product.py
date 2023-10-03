@@ -321,7 +321,7 @@ class ProductProduct(models.Model):
     def action_view_invoice(self):
         for rec in self:
             invoices = self.env['account.move'].search([('property_id', '=', rec.id)])
-            action = self.env.ref('account.action_move_out_invoice_type').read()[0]
+            action = self.env.ref('account.action_move_out_invoice_type').sudo().read()[0]
             if len(invoices) > 1:
                 action['domain'] = [('id', 'in', invoices.ids)]
             elif len(invoices) == 1:
@@ -334,7 +334,7 @@ class ProductProduct(models.Model):
     def action_view_maintenance(self):
         for rec in self:
             invoices = self.env['property.maintanance'].search([('property_id', '=', rec.id)])
-            action = self.env.ref('realestate_sgt.action_maintanance').read()[0]
+            action = self.env.ref('realestate_sgt.action_maintanance').sudo().read()[0]
             if len(invoices) > 1:
                 action['domain'] = [('id', 'in', invoices.ids)]
             elif len(invoices) == 1:

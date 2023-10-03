@@ -21,7 +21,7 @@ class PropertyList(models.Model):
     company_id = fields.Many2one('res.company', default=lambda self: self.env.user.company_id)
 
     def view_searched_property(self):
-        action = self.env.ref('realestate_sgt.property_product_action').read()[0]
+        action = self.env.ref('realestate_sgt.property_product_action').sudo().read()[0]
         if len(self.property_id) > 1:
             action['domain'] = [('id', '=', self.property_id.id)]
         if len(self.property_id) == 1:

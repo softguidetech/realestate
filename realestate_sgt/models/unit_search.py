@@ -23,7 +23,7 @@ class UnitList(models.Model):
     deposit = fields.Float("Deposit")
 
     def view_searched_unit(self):
-        action = self.env.ref('realestate_sgt.property_unit_action').read()[0]
+        action = self.env.ref('realestate_sgt.property_unit_action').sudo().read()[0]
         if len(self.unit_id) > 1:
             action['domain'] = [('id', '=', self.unit_id.id)]
         if len(self.unit_id) == 1:

@@ -332,7 +332,7 @@ class ContractDetails(models.Model):
         invoices = self.env['account.move'].sudo().search(
             [('contract_id', '=', self.id), ('is_deposit', '=', False), ('is_accrued', '=', False),
              ('is_credit_note', '=', False)])
-        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
+        action = self.env.ref('account.action_move_out_invoice_type').sudo().read()[0]
         if len(invoices) > 1:
             action['domain'] = [('id', 'in', invoices.ids)]
         elif len(invoices) == 1:
@@ -344,7 +344,7 @@ class ContractDetails(models.Model):
     def action_view_credit_note(self):
         credit_notes = self.env['account.move'].sudo().search(
             [('contract_id', '=', self.id),('is_credit_note', '!=', False)])
-        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
+        action = self.env.ref('account.action_move_out_invoice_type').sudo().read()[0]
         if len(credit_notes) > 1:
             action['domain'] = [('id', 'in', credit_notes.ids)]
         elif len(credit_notes) == 1:
@@ -357,7 +357,7 @@ class ContractDetails(models.Model):
     def action_view_depposit_journals(self):
         depposit_journals = self.env['account.move'].sudo().search(
             [('contract_id', '=', self.id), ('partner_id', '=', self.partner_id.id), ('is_deposit', '=', True)])
-        action = self.env.ref('account.action_move_journal_line').read()[0]
+        action = self.env.ref('account.action_move_journal_line').sudo().read()[0]
         if len(depposit_journals) > 1:
             action['domain'] = [('id', 'in', depposit_journals.ids)]
         elif len(depposit_journals) == 1:
@@ -370,7 +370,7 @@ class ContractDetails(models.Model):
     def action_view_accured_journals(self):
         accured_journals = self.env['account.move'].sudo().search(
             [('contract_id', '=', self.id), ('partner_id', '=', self.partner_id.id), ('is_accrued', '=', True)])
-        action = self.env.ref('account.action_move_journal_line').read()[0]
+        action = self.env.ref('account.action_move_journal_line').sudo().read()[0]
         if len(accured_journals) > 1:
             action['domain'] = [('id', 'in', accured_journals.ids)]
         elif len(accured_journals) == 1:
@@ -382,7 +382,7 @@ class ContractDetails(models.Model):
 
     def action_view_pdc_payments(self):
         pdc_payments = self.env['account.payment'].search([('is_pdc_payment', '=', True), ('partner_id', '=', self.partner_id.id)])
-        action = self.env.ref('realestate_sgt.account_pdc_payment_payable_menu_action').read()[0]
+        action = self.env.ref('realestate_sgt.account_pdc_payment_button_action').sudo().read()[0]
         # action = self.env.ref('customer_post_dated_cheque_app.action_pdc_payment').read()[0]
         if len(pdc_payments) > 1:
             action['domain'] = [('id', 'in', pdc_payments.ids)]

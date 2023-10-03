@@ -59,7 +59,7 @@ class PropertyMaintanance(models.Model):
 
     def action_view_invoice(self):
         invoices = self.env['account.move'].search([('id', '=', self.invoice_id.id)])
-        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
+        action = self.env.ref('account.action_move_out_invoice_type').sudo().read()[0]
         if len(invoices) > 1:
             action['domain'] = [('id', 'in', invoices.ids)]
         elif len(invoices) == 1:

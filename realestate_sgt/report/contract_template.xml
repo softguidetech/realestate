@@ -28,33 +28,88 @@
     </record>
 
     <template id="template_report">
-         <t t-call="web.html_container">
+        <t t-call="web.html_container">
+            <style>
+                /* Style for the header section */
+                .header {
+                border-bottom: 2px solid black;
+                text-align: center;
+                margin-bottom: 20px;
+                }
+
+                .header h4 {
+                font-weight: bold;
+                }
+
+                .header h5 span {
+                font-weight: bold;
+                }
+
+                /* Style for the table */
+                table {
+                width: 100%;
+                border-collapse: collapse;
+                }
+
+                th, td {
+                border: 1px solid black;
+                text-align: center;
+                padding: 5px;
+                }
+
+                th {
+                background-color: #f2f2f2;
+                color: gray;
+                }
+
+                /* Style for the footer */
+                .footer {
+                border-top: 1px solid black;
+                margin-top: 20px;
+                text-align: right;
+                }
+
+                .footer ul.list-inline {
+                margin-top: 10px;
+                }
+
+                /* Style for pagination */
+                .footer ul.list-inline li {
+                display: inline-block;
+                margin-right: 5px;
+                }
+            </style>
             <div class="header" style="border-bottom: 2px solid black">
-                <h4 class="text-center"><strong>Expire Contracts Report</strong></h4><br/>
+                <h4 class="text-center">
+                    <strong>Expire Contracts Report</strong>
+                </h4>
+                <!--                    <br/>-->
                 <h5 class="text-center">
                     <span>Date :</span>
                     <t t-esc="report_date"/>
                 </h5>
             </div>
+
+
             <div class="article">
-                <table class="table table-condensed table-bordered" style="width: 100%">
+                <table class="table table-condensed table-bordered">
                     <thead>
-                        <th class="text-center" style="width: 11%,color:gray">Name</th>
-                        <th class="text-center" style="width: 11%,color:gray">Code</th>
-                        <th class="text-center" style="width: 11%">Start Date</th>
-                        <th class="text-center" style="width: 11%">Expire Date</th>
+                        <th class="text-center" style="width: 11%, color: gray">Name</th>
+                        <th class="text-center" style="width: 10%, color: gray">Code</th>
+                        <th class="text-center" style="width: 12.5%">Start Date</th>
+                        <th class="text-center" style="width: 12.5%">Expire Date</th>
                         <th class="text-center" style="width: 11%">Property Name</th>
-                        <th class="text-center" style="width: 11%">Rent Price</th>
-                        <th class="text-center" style="width: 11%">Deposite</th>
-                        <th class="text-center" style="width: 11%">Renew Date</th>
+                        <th class="text-center" style="width: 10%">Rent Price</th>
+                        <th class="text-center" style="width: 10%">Deposite</th>
+                        <th class="text-center" style="width: 13%">Renew Date</th>
                     </thead>
                     <tbody>
-                         <t t-foreach="docs" t-as="doc">  
-                             <tr>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
                                 <td>
                                     <span t-esc="doc['name']"/>
                                 </td>
-                                                            <td>
+                                <td>
                                     <span t-esc="doc['code']"/>
                                 </td>
                                 <td>
@@ -75,16 +130,16 @@
                                 <td>
                                     <span t-esc="doc['renewal_date']"/>
                                 </td>
-
                             </tr>
                         </t>
                     </tbody>
                 </table>
             </div>
+
             <div class="footer">
-                <div class="row text-center" style="border-top: 1px solid black;">
+                <div class="row text-center">
                     <div class="col-xs-3 col-xs-offset-9 text-right">
-                        <ul class="list-inline" style="margin-top:10px;">
+                        <ul class="list-inline">
                             <li>Page:</li>
                             <li>
                                 <span class="page"/>
@@ -97,6 +152,79 @@
                     </div>
                 </div>
             </div>
-       </t>
+        </t>
     </template>
+
+    <!--        <template id="template_report">-->
+    <!--             <t t-call="web.html_container">-->
+    <!--                    <div class="header" style="border-bottom: 2px solid black">-->
+    <!--                        <h4 class="text-center"><strong>Expire Contracts Report</strong></h4><br/>-->
+    <!--                        <h5 class="text-center">-->
+    <!--                            <span>Date :</span>-->
+    <!--                            <t t-esc="report_date"/>-->
+    <!--                        </h5>-->
+    <!--                    </div>-->
+    <!--                <div class="article">-->
+    <!--                    <table class="table table-condensed table-bordered" style="width: 100%">-->
+    <!--                        <thead>-->
+    <!--                            <th class="text-center" style="width: 11%,color:gray">Name</th>-->
+    <!--                            <th class="text-center" style="width: 11%,color:gray">Code</th>-->
+    <!--                            <th class="text-center" style="width: 11%">Start Date</th>-->
+    <!--                            <th class="text-center" style="width: 11%">Expire Date</th>-->
+    <!--                            <th class="text-center" style="width: 11%">Property Name</th>-->
+    <!--                            <th class="text-center" style="width: 11%">Rent Price</th>-->
+    <!--                            <th class="text-center" style="width: 11%">Deposite</th>-->
+    <!--                            <th class="text-center" style="width: 11%">Renew Date</th>-->
+    <!--                        </thead>-->
+    <!--                        <tbody>-->
+    <!--                             <t t-foreach="docs" t-as="doc">  -->
+    <!--                                 <tr>-->
+    <!--                                    <td>-->
+    <!--                                        <span t-esc="doc['name']"/>-->
+    <!--                                    </td>-->
+    <!--                                                                <td>-->
+    <!--                                        <span t-esc="doc['code']"/>-->
+    <!--                                    </td>-->
+    <!--                                    <td>-->
+    <!--                                        <span t-esc="doc['from_date']"/>-->
+    <!--                                    </td>-->
+    <!--                                    <td>-->
+    <!--                                        <span t-esc="doc['to_date']"/>-->
+    <!--                                    </td>-->
+    <!--                                    <td>-->
+    <!--                                        <span t-esc="doc['property_id']"/>-->
+    <!--                                    </td>-->
+    <!--                                    <td>-->
+    <!--                                        <span t-esc="doc['rent_price']"/>-->
+    <!--                                    </td>-->
+    <!--                                    <td>-->
+    <!--                                        <span t-esc="doc['deposite']"/>-->
+    <!--                                    </td>-->
+    <!--                                    <td>-->
+    <!--                                        <span t-esc="doc['renewal_date']"/>-->
+    <!--                                    </td>-->
+
+    <!--                                </tr>-->
+    <!--                            </t>-->
+    <!--                        </tbody>-->
+    <!--                    </table>-->
+    <!--                </div>-->
+    <!--                <div class="footer">-->
+    <!--                    <div class="row text-center" style="border-top: 1px solid black;">-->
+    <!--                        <div class="col-xs-3 col-xs-offset-9 text-right">-->
+    <!--                            <ul class="list-inline" style="margin-top:10px;">-->
+    <!--                                <li>Page:</li>-->
+    <!--                                <li>-->
+    <!--                                    <span class="page"/>-->
+    <!--                                </li>-->
+    <!--                                <li>/</li>-->
+    <!--                                <li>-->
+    <!--                                    <span class="topage"/>-->
+    <!--                                </li>-->
+    <!--                            </ul>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--           </t>-->
+    <!--        </template>-->
 </odoo>

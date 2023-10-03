@@ -114,6 +114,19 @@
                 'default_is_pdc_payment':1,
             }</field>
     </record>
+    <record id="account_pdc_payment_button_action" model="ir.actions.act_window">
+        <field name="name">PDC Payable Payments</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="nets_account_pdc.account_payment_inherit_pdc_tree_view"/>
+        <field name="domain">[('is_pdc_payment','=',True)]</field>
+        <field name="context">{
+                'default_payment_type': 'outbound',
+                'default_partner_type': 'supplier',
+                'default_move_journal_types': ('bank', 'cash'),
+                'default_is_pdc_payment':1,
+            }</field>
+    </record>
 
     <!-- PDC Menus -->
     <menuitem id="menu_pdc_payment_receivable" name="PDC Receivable" groups="account.group_account_invoice" parent="account.menu_finance_receivables" action="account_pdc_payment_receivable_menu_action" sequence="16"/>
