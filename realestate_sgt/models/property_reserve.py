@@ -289,7 +289,7 @@ class PropertyBook(models.TransientModel):
                         'email': self.renter_id.email,
                         'groups_id': [(6, 0, [portal_group.id])]
                     }
-                    portal_user = self.env['res.users'].create(user_values)
+                    portal_user = self.env['res.users'].sudo().create(user_values)
                     portal_user.action_reset_password()
 
             else:

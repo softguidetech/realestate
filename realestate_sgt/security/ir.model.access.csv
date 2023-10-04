@@ -77,6 +77,7 @@ access_property_maintanance,property.maintanance access,model_property_maintanan
 
 access_property_maintanance1,property.maintanance acces,model_property_maintanance,base.group_portal,1,1,1,0
 access_contract_detail_portal,contract.details.prtal,model_contract_details,base.group_portal,1,0,0,0
+access_res_users_portal,res.users.prtal,base.model_res_users,base.group_portal,1,1,1,0
 
 access_unit_classification,unit.classification,model_unit_classification,base.group_user,1,1,1,0
 access_unit_report_wizard,Unit Report Wizard,model_unit_report_wizard,base.group_user,1,1,1,1
