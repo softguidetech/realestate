@@ -24,6 +24,7 @@
                                 <field name="renter_id" required="1"/>
                                 <field name="owner_id" readonly="1"/>
                                 <field name="contract_fee" force_save="1" required="1"/>
+                                <field name="contract_number" force_save="1"/>
                             </group>
                             <group string="Rent Contract Information">
                                 <field name="contract_id" widget="selection"
@@ -39,6 +40,7 @@
                                 <field name="from_date"/>
                                 <field name="to_date" readonly="1" force_save="1"/>
                                 <field name="renewal_date" readonly="1" force_save="1"/>
+                                <field name="contract_date" force_save="1"/>
                                 <field name="month" invisible="1"/>
                                 <field name="company_id" invisible="1"/>
                             </group>

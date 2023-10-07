@@ -50,9 +50,12 @@ class PropertyFloor(models.Model):
         for rec in self:
             rec.is_contract_expired = False
             if rec.state == 'reserve':
-                contract_id = self.env['contract.details'].search([('unit_id', '=', rec.id),('state', '=', 'expire')])
-                if contract_id:
+                # contract_id = self.env['contract.details'].search([('unit_id', '=', rec.id),('state', '=', 'expire')])
+                contract_id = self.env['contract.details'].search([('unit_id', '=', rec.id),('state', 'in', ['new','running','cancel','terminated'])])
+                if not contract_id:
                     rec.is_contract_expired = True
+                else:
+                    rec.is_contract_expired = False
 
     def renew_unit(self):
         if self.state == 'reserve' and self.is_contract_expired == True:
@@ -61,7 +64,7 @@ class PropertyFloor(models.Model):
                     raise UserError(_("This property already reserved..!"))
             if not self.analytic_account_id or not self.account_id:
                 raise UserError(_("Please enter analytic account or income account ..!"))
-            view_id = self.env.ref('realestate_sgt.property_book_wizard')
+            view_id = self.env.ref('property_rental_mgt_app.property_book_wizard')
 
             # offer
             offer_price = 0
@@ -159,7 +162,7 @@ class PropertyFloor(models.Model):
         #     raise UserError(_("This property only allow for sale..!"))
         # if self.unit_rent_value <= 0 or self.deposit <= 0:
         #     raise UserError(_("Please enter valid unit rent or deposit price for (%s)..!") % self.name)
-        view_id = self.env.ref('realestate_sgt.property_book_wizard')
+        view_id = self.env.ref('property_rental_mgt_app.property_book_wizard')
 
         # offer
         offer_price = 0
@@ -230,11 +233,11 @@ class PropertyFloor(models.Model):
 
     def action_view_contracts(self):
         contracts = self.env['contract.details'].search([('unit_id', '=', self.id)])
-        action = self.env.ref('realestate_sgt.action_contract_details').sudo().read()[0]
+        action = self.env.ref('property_rental_mgt_app.action_contract_details').sudo().read()[0]
         if len(contracts) > 1:
             action['domain'] = [('id', 'in', contracts.ids)]
         elif len(contracts) == 1:
-            action['views'] = [(self.env.ref('realestate_sgt.property_contract_details_form').id, 'form')]
+            action['views'] = [(self.env.ref('property_rental_mgt_app.property_contract_details_form').id, 'form')]
             action['res_id'] = contracts.ids[0]
         else:
             action = {'type': 'ir.actions.act_window_close'}

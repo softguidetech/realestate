@@ -26,7 +26,7 @@ class RentContract(models.Model):
                 if res.month <= 0:
                     raise UserError(_("Please enter valid year in number...!"))
         return res
-        # make commit changes 
+        # make commit changes
 
 
 class ContractDetails(models.Model):
@@ -63,6 +63,10 @@ class ContractDetails(models.Model):
     number_of_cheques = fields.Integer(string="Number of Cheque")
     document_ids = fields.Many2many('contract.document', 'contract_document_default_rel', 'contract_id', 'document_id')
     company_id = fields.Many2one('res.company', related='unit_id.company_id')
+    contract_number = fields.Char(string="Contract Number")
+    contract_date = fields.Date(string="Contract Date")
+    is_tax_included = fields.Boolean(string="Is tax included")
+    contract_fee = fields.Float(string='Contract Fee', digits=(16, 3), store=True)
 
     def set_state_to_running_expire(self):
         records_to_update_runing = self.search([('from_date', '<=', fields.Date.today()), ('state', '=', 'new')])
@@ -100,7 +104,7 @@ class ContractDetails(models.Model):
     def _compute_pdc_payment_count(self):
         for rec in self:
             pdc_payments = self.env['account.payment'].search([('is_pdc_payment', '=',True),('partner_id', '=',rec.partner_id.id)])
-            rec.pdc_payment_count = len(pdc_payments)        
+            rec.pdc_payment_count = len(pdc_payments)
 
     # @api.depends()
     # def _compute_pdc_payment_count(self):
@@ -150,7 +154,7 @@ class ContractDetails(models.Model):
             rec.write({'state': 'running'})
         for record in expired_contract:
             record.write({'state': 'expire'})
-            template_id = self.env.ref('realestate_sgt.rental_contract_template')
+            template_id = self.env.ref('property_rental_mgt_app.rental_contract_template')
             auther = record.owner_id
             template_id.sudo().with_context(auther=auther).send_mail(record.id, force_send=True)
         return True
@@ -162,19 +166,19 @@ class ContractDetails(models.Model):
             if rec.property_id.rent_unit == 'monthly':
                 from_date = rec.from_date + relativedelta(months=1)
                 if from_date == today_date:
-                    template_id = self.env.ref('realestate_sgt.monthly_maintainance_template')
+                    template_id = self.env.ref('property_rental_mgt_app.monthly_maintainance_template')
                     auther = rec.property_id.salesperson_id
                     template_id.sudo().with_context(auther=auther).send_mail(rec.id, force_send=True)
             if rec.property_id.rent_unit == 'yearly':
                 from_date = rec.from_date + relativedelta(years=1)
                 if from_date == today_date:
-                    template_id = self.env.ref('realestate_sgt.yearly_maintainance_template')
+                    template_id = self.env.ref('property_rental_mgt_app.yearly_maintainance_template')
                     auther = rec.property_id.salesperson_id
                     template_id.sudo().with_context(auther=auther).send_mail(rec.id, force_send=True)
         return True
 
     def create_renew_contract(self):
-        view_id = self.env.ref('realestate_sgt.renew_contract_wizard')
+        view_id = self.env.ref('property_rental_mgt_app.renew_contract_wizard')
         if view_id:
             renew_contract_data = {
                 'name': _('Renew Contract Configure'),
@@ -361,7 +365,7 @@ class ContractDetails(models.Model):
         if len(depposit_journals) > 1:
             action['domain'] = [('id', 'in', depposit_journals.ids)]
         elif len(depposit_journals) == 1:
-            action['views'] = [(self.env.ref('realestate_sgt.view_account_move_form_inherit').id, 'form')]
+            action['views'] = [(self.env.ref('property_rental_mgt_app.view_account_move_form_inherit').id, 'form')]
             action['res_id'] = depposit_journals.ids[0]
         else:
             action = {'type': 'ir.actions.act_window_close'}
@@ -374,7 +378,7 @@ class ContractDetails(models.Model):
         if len(accured_journals) > 1:
             action['domain'] = [('id', 'in', accured_journals.ids)]
         elif len(accured_journals) == 1:
-            action['views'] = [(self.env.ref('realestate_sgt.view_account_move_form_inherit').id, 'form')]
+            action['views'] = [(self.env.ref('property_rental_mgt_app.view_account_move_form_inherit').id, 'form')]
             action['res_id'] = accured_journals.ids[0]
         else:
             action = {'type': 'ir.actions.act_window_close'}
@@ -382,14 +386,12 @@ class ContractDetails(models.Model):
 
     def action_view_pdc_payments(self):
         pdc_payments = self.env['account.payment'].search([('is_pdc_payment', '=', True), ('partner_id', '=', self.partner_id.id)])
-        action = self.env.ref('realestate_sgt.account_pdc_payment_button_action').sudo().read()[0]
-        # action = self.env.ref('customer_post_dated_cheque_app.action_pdc_payment').read()[0]
+        action = self.env.ref('nets_account_pdc.account_pdc_payment_button_action').sudo().read()[0]
         if len(pdc_payments) > 1:
             action['domain'] = [('id', 'in', pdc_payments.ids)]
         elif len(pdc_payments) == 1:
             action['views'] = [
-                (self.env.ref('realestate_sgt.account_payment_inherit_pdc_form_view').id, 'form')]
-                # (self.env.ref('customer_post_dated_cheque_app.view_pdc_account_payment_invoice_form').id, 'form')]
+                (self.env.ref('nets_account_pdc.account_payment_inherit_pdc_form_view').id, 'form')]
             action['res_id'] = pdc_payments.ids[0]
         else:
             action = {'type': 'ir.actions.act_window_close'}
@@ -413,11 +415,10 @@ class ContractDetails(models.Model):
                 'id': payment.id,
                 'name': payment.name,
                 'date': payment.date,
-                'payment_method_line_id': payment.payment_method_line_id.name,
                 'partner_id': payment.partner_id.name,
                 'amount_company_currency_signed': payment.amount_company_currency_signed,
                 'journal': payment.journal_id.name,
-                'state': payment.state,
+                'currency': payment.company_currency_id.name,
             }
             payment_list.append(payment_data)
 
@@ -441,7 +442,7 @@ class ContractDetails(models.Model):
                 'renewal_date': self.renewal_date,
             }
         }
-        return self.env.ref('realestate_sgt.report_contract_details').report_action(self, data=data)
+        return self.env.ref('property_rental_mgt_app.report_contract_details').report_action(self, data=data)
 
 
 class ContractDocument(models.Model):

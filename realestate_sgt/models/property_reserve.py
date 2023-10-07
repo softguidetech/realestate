@@ -47,6 +47,8 @@ class PropertyBook(models.TransientModel):
     )
     is_tax_included = fields.Boolean(string="Is tax included")
     contract_fee = fields.Float(string='Contract Fee', digits=(16, 3), store=True)
+    contract_number = fields.Char(string="Contract Number")
+    contract_date = fields.Date(string="Contract Date",default=fields.Date.context_today)
 
     @api.constrains('contract_fee')
     def check_contract_fee(self):
@@ -278,7 +280,7 @@ class PropertyBook(models.TransientModel):
         if self.renter_id:
             if self.renter_id.email:
                 portal_group = self.env.ref('base.group_portal')
-                existing_portal_user = self.renter_id.user_ids.filtered(
+                existing_portal_user = self.renter_id.sudo().user_ids.filtered(
                     lambda user: user.has_group('base.group_portal'))
                 if not existing_portal_user:
                     # raise ValidationError(_('The partner "%s" already has a portal user.' % self.renter_id.name))
@@ -290,7 +292,7 @@ class PropertyBook(models.TransientModel):
                         'groups_id': [(6, 0, [portal_group.id])]
                     }
                     portal_user = self.env['res.users'].sudo().create(user_values)
-                    portal_user.action_reset_password()
+                    # portal_user.action_reset_password()
 
             else:
                 raise ValidationError(_("%s has no email id.") % self.renter_id.name)
@@ -329,6 +331,10 @@ class PropertyBook(models.TransientModel):
             'discount_offer': self.discount_offer,
             'offer_name': self.offer_name,
             'number_of_cheques': self.number_of_cheques,
+            'contract_number': self.contract_number,
+            'contract_date': self.contract_date,
+            'is_tax_included': self.is_tax_included,
+            'contract_fee': self.contract_fee,
         })
 
         # Create a deposit journal entry
@@ -365,7 +371,7 @@ class PropertyBook(models.TransientModel):
             })]})
             self.property_id.write({'state': 'reserve', 'is_reserved': True, 'user_id': self.env.user.id})
             self.unit_id.write({'state': 'reserve', 'is_reserved': True, 'user_id': self.env.user.id})
-            template_id = self.env.ref('realestate_sgt.property_reserved_template')
+            template_id = self.env.ref('property_rental_mgt_app.property_reserved_template')
             values = template_id.generate_email(self.id,
                                                 ['subject', 'body_html', 'email_from', 'email_to', 'partner_to',
                                                  'email_cc', 'reply_to', 'scheduled_date'])
@@ -415,7 +421,7 @@ class PropertyBook(models.TransientModel):
                     'type': 'ir.actions.act_window',
                     'view_mode': 'tree,form',
                     'res_id': contract_id.id,
-                    'views': [(self.env.ref('realestate_sgt.property_contract_details_form').id, 'form')],
+                    'views': [(self.env.ref('property_rental_mgt_app.property_contract_details_form').id, 'form')],
                     'res_model': 'contract.details',
                     'domain': [('invoice_id', '=', self.property_id.id)],
                 }
@@ -433,6 +439,8 @@ class PropertyBookChequeReference(models.TransientModel):
     payment_date = fields.Date('Payment Date')
     payment_amount = fields.Float(string='Payment Amount')
     customer_id = fields.Many2one('res.partner', string="Customer")
+    journal_id = fields.Many2one('account.journal', string='Journal',
+                                 domain="[('type', 'in', ('bank', 'cash')), ('company_id', '=', company_id)]")
     journal_id = fields.Many2one('account.journal', string='Journal',
                                  domain="[('type', 'in', ('bank', 'cash')), ('company_id', '=', company_id)]")
     company_id = fields.Many2one('res.company', default=_default_company)
