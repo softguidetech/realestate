@@ -292,7 +292,7 @@ class PropertyBook(models.TransientModel):
                         'groups_id': [(6, 0, [portal_group.id])]
                     }
                     portal_user = self.env['res.users'].sudo().create(user_values)
-                    # portal_user.action_reset_password()
+                    portal_user.action_reset_password()
 
             else:
                 raise ValidationError(_("%s has no email id.") % self.renter_id.name)
