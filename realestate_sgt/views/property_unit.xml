@@ -10,7 +10,8 @@
                 <tree decoration-success="state=='rent'" decoration-danger="state in ['reserve','sold','cancel']">
                     <field name="name"/>
                     <field name="code"/>
-                    <field name="company_id"/>
+<!--                    <field name="company_id"/>-->
+                    <field name="owner_id"/>
                     <field name="property_id"/>
                     <field name="floor_id"/>
                     <field name="unit_area_feet"/>
@@ -35,12 +36,13 @@
                         <button class="oe_highlight" type="object" name="button_confirm" string="Confirm Unit"
                                 icon="fa-check" states="draft" groups="property_rental_mgt_app.group_manager"/>
                         <button class="oe_highlight" type="object" icon="fa-home" name="reserve_property"
-                                string="Reserve and Rent unit" states="rent"/>
+                                string="Reserve and Rent unit"  attrs="{'invisible': [('can_create_contract', '=', False)]}"/>
                         <button string="Reset to Draft" type="object" name="reset_to_draft" class="oe_highlight"
                                 attrs="{'invisible': [('state', '!=', 'rent')]}"/>
                         <button name="renew_unit" type="object" string="Renew" class="oe_highlight"
                                 attrs="{'invisible': ['|',('state', '!=', 'reserve'), ('is_contract_expired', '=', False)]}"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,sale,rent,reserve,sold"/>
+                        <field name="can_create_contract" invisible="1"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">

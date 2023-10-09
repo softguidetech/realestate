@@ -28,12 +28,18 @@
             <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>
 
+        <record id="cancel_terminate_group" model="res.groups">
+            <field name="name">Cancel/Terminate Contract Group</field>
+            <field name="implied_ids" eval="[(4, ref('property_rental_mgt_app.group_manager'))]"/>
+            <field name="category_id" ref="rent_property_management_type"/>
+        </record>
+
         <record id="base.res_partner_rule_private_employee" model="ir.rule">
             <field name="name">res.partner.rule.private.employee with All Customers</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="domain_force">[(1,'=',1)]</field>
             <field name="groups"
-                   eval="[(6, 0, [ref('realestate_sgt.group_manager'),ref('base.group_user')])]"/>
+                   eval="[(6, 0, [ref('property_rental_mgt_app.group_manager'),ref('base.group_user')])]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_create" eval="True"/>
@@ -44,14 +50,14 @@
             <field name="name">Own Renter Rule</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
-            <field name="groups" eval="[(4,ref('realestate_sgt.group_rent_payer'))]"/>
+            <field name="groups" eval="[(4,ref('property_rental_mgt_app.group_rent_payer'))]"/>
         </record>
 
         <record id="purchaser_partner_rule" model="ir.rule">
             <field name="name">Own Purchaser Rule</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
-            <field name="groups" eval="[(4,ref('realestate_sgt.group_purchaser'))]"/>
+            <field name="groups" eval="[(4,ref('property_rental_mgt_app.group_purchaser'))]"/>
         </record>
 
         <!-- ir.rule for Purchaser see only saleable property, renter see only rentable property-->
@@ -60,13 +66,13 @@
             <field name="model_id" ref="product.model_product_product"/>
             <field name="domain_force">['|',('state','=','sale'),'&amp;',('state','=','sold'),('user_id','=',user.id)]
             </field>
-            <field name="groups" eval="[(4, ref('realestate_sgt.group_purchaser'))]"/>
+            <field name="groups" eval="[(4, ref('property_rental_mgt_app.group_purchaser'))]"/>
         </record>
 
         <record id="property_renter_rule" model="ir.rule">
             <field name="name">Property Renter Access</field>
             <field name="model_id" ref="product.model_product_product"/>
-            <field name="groups" eval="[(4, ref('realestate_sgt.group_rent_payer'))]"/>
+            <field name="groups" eval="[(4, ref('property_rental_mgt_app.group_rent_payer'))]"/>
             <field name="domain_force">['|',('state','=','rent'),'&amp;',('state','=','reserve'),('user_id','=',user.id)]</field>
         </record>
 
@@ -78,19 +84,19 @@
 
         <record id="unit_multi_company_rule" model="ir.rule">
             <field name="name">Unit Multi-Company Rule</field>
-            <field name="model_id" ref="realestate_sgt.model_property_unit"/>
+            <field name="model_id" ref="property_rental_mgt_app.model_property_unit"/>
             <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
         </record>
 
         <record id="floor_multi_company_rule" model="ir.rule">
             <field name="name">Floor Multi-Company Rule</field>
-            <field name="model_id" ref="realestate_sgt.model_property_floor"/>
+            <field name="model_id" ref="property_rental_mgt_app.model_property_floor"/>
             <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
         </record>
 
         <record id="maintenance_multi_company_rule" model="ir.rule">
             <field name="name">Maintenance Multi-Company Rule</field>
-            <field name="model_id" ref="realestate_sgt.model_property_maintanance"/>
+            <field name="model_id" ref="property_rental_mgt_app.model_property_maintanance"/>
             <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
         </record>
 
@@ -98,8 +104,8 @@
         <!-- property contract rule -->
         <record id="property_contract_rule" model="ir.rule">
             <field name="name">Property Contract Access</field>
-            <field name="model_id" ref="realestate_sgt.model_contract_details"/>
-            <field name="groups" eval="[(4, ref('realestate_sgt.group_manager'))]"/>
+            <field name="model_id" ref="property_rental_mgt_app.model_contract_details"/>
+            <field name="groups" eval="[(4, ref('property_rental_mgt_app.group_manager'))]"/>
             <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
 <!--            <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>-->
 <!--            <field name="domain_force">['|',('owner_id', '=', user.partner_id.id),('partner_id','=',user.partner_id.id)]</field>-->
@@ -113,7 +119,7 @@
         <!-- portal contract rule -->
         <record id="portal_contract_rule" model="ir.rule">
             <field name="name">Portal Contract Access</field>
-            <field name="model_id" ref="realestate_sgt.model_contract_details"/>
+            <field name="model_id" ref="property_rental_mgt_app.model_contract_details"/>
             <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
             <field name="groups" eval="[(6,0, [ref('base.group_portal')])]"/>
             <field name="perm_read" eval="True"/>
@@ -125,7 +131,7 @@
         <!-- portal maintanance rule -->
         <record id="portal_maintenance_rule" model="ir.rule">
             <field name="name">Portal Maintenance Access</field>
-            <field name="model_id" ref="realestate_sgt.model_property_maintanance"/>
+            <field name="model_id" ref="property_rental_mgt_app.model_property_maintanance"/>
             <field name="domain_force">[('requister_id','=',user.partner_id.id)]</field>
             <field name="groups" eval="[(6,0, [ref('base.group_portal')])]"/>
             <field name="perm_read" eval="True"/>
@@ -138,15 +144,15 @@
         <!-- Maintanance access rule for renter -->
         <record id="property_maintanance_rule" model="ir.rule">
             <field name="name">Property Maintanance Access</field>
-            <field name="model_id" ref="realestate_sgt.model_property_maintanance"/>
-            <field name="groups" eval="[(4, ref('realestate_sgt.group_rent_payer'))]"/>
+            <field name="model_id" ref="property_rental_mgt_app.model_property_maintanance"/>
+            <field name="groups" eval="[(4, ref('property_rental_mgt_app.group_rent_payer'))]"/>
             <field name="domain_force">[('responsible_id','=',user.partner_id.id)]</field>
         </record>
 
 
         <record id="property_maintanance_rule_portal_records" model="ir.rule">
             <field name="name">Property Maintanance Access Own Recordss</field>
-            <field name="model_id" ref="realestate_sgt.model_property_maintanance"/>
+            <field name="model_id" ref="property_rental_mgt_app.model_property_maintanance"/>
             <field name="domain_force">[('create_uid','=',user.id)]</field>
             <field name="groups" eval="[(6, 0, [ref('base.group_portal')])]"/>
             <field name="perm_read" eval="True"/>
@@ -160,7 +166,7 @@
         <record id="property_renter_invoice_rule" model="ir.rule">
             <field name="name">Account Invoice Access</field>
             <field name="model_id" ref="account.model_account_move"/>
-            <field name="groups" eval="[(4, ref('realestate_sgt.group_rent_payer'))]"/>
+            <field name="groups" eval="[(4, ref('property_rental_mgt_app.group_rent_payer'))]"/>
             <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
         </record>
 
@@ -168,7 +174,7 @@
         <record id="property_purchaser_invoice_rule" model="ir.rule">
             <field name="name">Property Purchaser Invoice Access</field>
             <field name="model_id" ref="account.model_account_move"/>
-            <field name="groups" eval="[(4, ref('realestate_sgt.group_purchaser'))]"/>
+            <field name="groups" eval="[(4, ref('property_rental_mgt_app.group_purchaser'))]"/>
             <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
         </record>
 

@@ -9,9 +9,9 @@
                 <form>
                     <header>
                         <button name="cancel_contract" type="object" string="Cancel Contract" class="oe_highlight"
-                                states="expire"/>
+                                states="expire" groups="property_rental_mgt_app.cancel_terminate_group"/>
                         <button name="terminate_contract" type="object" string="Terminate Contract" class="oe_highlight"
-                                states="expire"/>
+                                states="expire"  groups="property_rental_mgt_app.cancel_terminate_group"/>
                         <field name="state" widget="statusbar" statusbar_visible="new,running,expire,cancel,terminated"/>
                         <button name="create_renew_contract" type="object" string="Renew Contract" class="oe_highlight"
                                 states="expire" icon="fa-book" invisible="1"/>

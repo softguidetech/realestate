@@ -44,7 +44,25 @@ class PropertyFloor(models.Model):
     owner_id = fields.Many2one('res.partner', string='Unit Owner')
     dewa_number = fields.Char(string='Water and Elec Number')
     is_contract_expired = fields.Boolean(string="Is Expired", compute='_compute_is_expired')
+    can_create_contract = fields.Boolean(string="Can create contract", compute='_compute_can_create_contract')
     classification_id = fields.Many2one('unit.classification', string='Classification')
+
+    @api.depends('state', 'renter_history_ids')
+    def _compute_can_create_contract(self):
+        for rec in self:
+            rec.can_create_contract = False
+            if rec.state == 'rent':
+                rec.can_create_contract = True
+            elif rec.state == 'reserve':
+                last_contract = self.env['contract.details'].search(
+                    [('unit_id', '=', rec.id)])
+                # last_contract = rec.renter_history_ids and rec.renter_history_ids[-1]
+                max_id = max(last_contract.ids)
+                last_contract = self.env['contract.details'].browse(max_id)
+                if last_contract and last_contract.state in ['expire','cancel', 'terminated']:
+                    rec.can_create_contract = True
+            else:
+                rec.can_create_contract = False
 
     def _compute_is_expired(self):
         for rec in self:
