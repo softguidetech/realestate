@@ -146,11 +146,16 @@ class PropertyBook(models.TransientModel):
             self.cheque_reference_ids = cheque_lines_ids
 
     def create_contract_invoice(self,difference, contract_id):
+        analytic_vals = {}
+        if self.unit_id.analytic_account_id:
+            analytic_account_id = self.unit_id.analytic_account_id.id
+            analytic_vals[analytic_account_id] = 100
         journal_id = self.env['account.journal'].search([('type', '=', 'sale')], limit=1)
         line_vals = {
             'name': 'Contract value service fees',
             'quantity': 1,
             'price_unit': difference,
+            'analytic_distribution': analytic_vals,
         }
         move_vals = {
             'date': self.from_date,
