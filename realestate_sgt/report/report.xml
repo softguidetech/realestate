@@ -4,8 +4,8 @@
         <field name="name">Contract Details</field>
         <field name="model">contract.details</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">realestate_sgt.report_contract_detail</field>
-        <field name="report_file">realestate_sgt.report_contract_detail</field>
+        <field name="report_name">realestate_sgt.report_contract_detail_template</field>
+        <field name="report_file">realestate_sgt.report_contract_detail_template</field>
         <field name="paperformat_id" ref="paperformat_contract_report"/>
         <field name="binding_model_id" ref="model_contract_details"/>
         <field name="binding_type">report</field>

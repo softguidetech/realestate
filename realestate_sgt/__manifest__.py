@@ -17,6 +17,7 @@
         'data/property_reminder.xml',
         'data/property_mail_template.xml',
         'wizard/reserved_unit_report_wizard.xml',
+        'wizard/contract_termination_wizard.xml',
         'security/ir_module_category_data.xml',
         'security/ir.model.access.csv',
         'views/res_company.xml',

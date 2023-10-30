@@ -34,7 +34,7 @@
                 <form string="Property Unit">
                     <header>
                         <button class="oe_highlight" type="object" name="button_confirm" string="Confirm Unit"
-                                icon="fa-check" states="draft" groups="property_rental_mgt_app.group_manager"/>
+                                icon="fa-check" states="draft" groups="realestate_sgt.group_manager"/>
                         <button class="oe_highlight" type="object" icon="fa-home" name="reserve_property"
                                 string="Reserve and Rent unit"  attrs="{'invisible': [('can_create_contract', '=', False)]}"/>
                         <button string="Reset to Draft" type="object" name="reset_to_draft" class="oe_highlight"
@@ -104,7 +104,7 @@
                         </group>
                         <notebook>
                             <page name="rent_payer" string="Renter Contract Details"
-                                  groups="property_rental_mgt_app.group_manager,property_rental_mgt_app.group_rent_payer">
+                                  groups="realestate_sgt.group_manager,realestate_sgt.group_rent_payer">
                                 <field name="renter_history_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
                                     <tree create="false" edit="false">
                                         <field name="reference" string="Contract"/>
@@ -129,7 +129,7 @@
                             </page>
 
                             <page name="page_rent_offer" string="Rent Offer"
-                                  groups="property_rental_mgt_app.group_manager,property_rental_mgt_app.group_rent_payer">
+                                  groups="realestate_sgt.group_manager,realestate_sgt.group_rent_payer">
                                 <field name="rent_offer_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
                                     <tree editable="bottom">
                                         <field name="offer_id"/>
@@ -178,7 +178,7 @@
                                 </field>
                             </page>
                             <page name="accounting" string="Accounting"
-                                  groups="property_rental_mgt_app.group_manager,property_rental_mgt_app.group_rent_payer">
+                                  groups="realestate_sgt.group_manager,realestate_sgt.group_rent_payer">
                                 <group colspan="2" string="Accounting">
                                     <field name="analytic_account_id"/>
                                     <field name="account_id"/>

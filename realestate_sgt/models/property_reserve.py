@@ -297,7 +297,7 @@ class PropertyBook(models.TransientModel):
                         'groups_id': [(6, 0, [portal_group.id])]
                     }
                     portal_user = self.env['res.users'].sudo().create(user_values)
-                    portal_user.action_reset_password()
+                    # portal_user.action_reset_password()
 
             else:
                 raise ValidationError(_("%s has no email id.") % self.renter_id.name)
@@ -376,7 +376,7 @@ class PropertyBook(models.TransientModel):
             })]})
             self.property_id.write({'state': 'reserve', 'is_reserved': True, 'user_id': self.env.user.id})
             self.unit_id.write({'state': 'reserve', 'is_reserved': True, 'user_id': self.env.user.id})
-            template_id = self.env.ref('property_rental_mgt_app.property_reserved_template')
+            template_id = self.env.ref('realestate_sgt.property_reserved_template')
             values = template_id.generate_email(self.id,
                                                 ['subject', 'body_html', 'email_from', 'email_to', 'partner_to',
                                                  'email_cc', 'reply_to', 'scheduled_date'])
@@ -426,7 +426,7 @@ class PropertyBook(models.TransientModel):
                     'type': 'ir.actions.act_window',
                     'view_mode': 'tree,form',
                     'res_id': contract_id.id,
-                    'views': [(self.env.ref('property_rental_mgt_app.property_contract_details_form').id, 'form')],
+                    'views': [(self.env.ref('realestate_sgt.property_contract_details_form').id, 'form')],
                     'res_model': 'contract.details',
                     'domain': [('invoice_id', '=', self.property_id.id)],
                 }

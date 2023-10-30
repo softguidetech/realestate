@@ -118,7 +118,7 @@
         <field name="name">PDC Payable Payments</field>
         <field name="res_model">account.payment</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="nets_account_pdc.account_payment_inherit_pdc_tree_view"/>
+        <field name="view_id" ref="realestate_sgt.account_payment_inherit_pdc_tree_view"/>
         <field name="domain">[('is_pdc_payment','=',True)]</field>
         <field name="context">{
                 'default_payment_type': 'outbound',

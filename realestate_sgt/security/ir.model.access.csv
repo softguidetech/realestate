@@ -81,4 +81,5 @@ access_res_users_portal,res.users.prtal,base.model_res_users,base.group_portal,1
 
 access_unit_classification,unit.classification,model_unit_classification,base.group_user,1,1,1,0
 access_unit_report_wizard,Unit Report Wizard,model_unit_report_wizard,base.group_user,1,1,1,1
+access_terminate_contract_wizard,access_terminate_contract_wizard,model_terminate_contract_wizard,base.group_user,1,1,1,1
 

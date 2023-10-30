@@ -154,7 +154,7 @@ class ContractDetails(models.Model):
             rec.write({'state': 'running'})
         for record in expired_contract:
             record.write({'state': 'expire'})
-            template_id = self.env.ref('property_rental_mgt_app.rental_contract_template')
+            template_id = self.env.ref('realestate_sgt.rental_contract_template')
             auther = record.owner_id
             template_id.sudo().with_context(auther=auther).send_mail(record.id, force_send=True)
         return True
@@ -166,19 +166,19 @@ class ContractDetails(models.Model):
             if rec.property_id.rent_unit == 'monthly':
                 from_date = rec.from_date + relativedelta(months=1)
                 if from_date == today_date:
-                    template_id = self.env.ref('property_rental_mgt_app.monthly_maintainance_template')
+                    template_id = self.env.ref('realestate_sgt.monthly_maintainance_template')
                     auther = rec.property_id.salesperson_id
                     template_id.sudo().with_context(auther=auther).send_mail(rec.id, force_send=True)
             if rec.property_id.rent_unit == 'yearly':
                 from_date = rec.from_date + relativedelta(years=1)
                 if from_date == today_date:
-                    template_id = self.env.ref('property_rental_mgt_app.yearly_maintainance_template')
+                    template_id = self.env.ref('realestate_sgt.yearly_maintainance_template')
                     auther = rec.property_id.salesperson_id
                     template_id.sudo().with_context(auther=auther).send_mail(rec.id, force_send=True)
         return True
 
     def create_renew_contract(self):
-        view_id = self.env.ref('property_rental_mgt_app.renew_contract_wizard')
+        view_id = self.env.ref('realestate_sgt.renew_contract_wizard')
         if view_id:
             renew_contract_data = {
                 'name': _('Renew Contract Configure'),
@@ -274,35 +274,54 @@ class ContractDetails(models.Model):
         cre = self.env['account.move'].create(move_vals)
         return True
 
-    def terminate_contract(self):
-        for record in self:
-            if record.state == 'terminated':
-                raise UserError(_("This contract has already been terminated."))
-            record.property_id.state = 'rent'
-            # Stop upcoming payment plan
-            self.stop_upcoming_payments(record)
-            # Find remaining invoices
-            remaining_invoices = self.env['account.move'].search([
-                ('unit_id', '=', record.unit_id.id), ('contract_id', '=', self.id), ('is_credit_note', '=', False),
-                ('state', '=', 'posted'),  # Only consider posted invoices
-            ])
-            # Refund remaining invoice amounts and create a credit note
-            refund_description = _("Refund for terminated contract")
-            credit_note = None
-            for invoice in remaining_invoices:
-                credit_note = self.refund_remaining_invoice(invoice, refund_description)
-            # Release the unit (apartment)
-            if record.unit_id:
-                record.unit_id.write({'state': 'rent'})
-            # Update history records
-            history_ids = self.env['renter.history'].search([('contract_id', '=', record.id)], limit=1)
-            history_ids.state = 'cancel'
-            history_ids.is_invoice = True
-            # Cleanup history logs
-            log = self.env['renter.history'].search([('contract_id', '=', record.id), ('state', '=', 'cancel')])
-            log.unlink()
-            # Mark the contract as terminated (logically deleted)
-            record.write({'state': 'terminated'})
+    def open_terminate_contract_wizard(self):
+        value_per_day = self.deposite / 365
+        contract_value_days = (self.from_date - fields.Date.today()).days
+        credit_note_value = contract_value_days * value_per_day
+
+        return {
+            'name': 'Terminate Contract',
+            'type': 'ir.actions.act_window',
+            'res_model': 'terminate.contract.wizard',
+            'view_mode': 'form',
+            'view_id': False,
+            'target': 'new',
+            'context': {
+                'default_contract_id': self.id,
+                'default_credit_note_value': credit_note_value,  # Pass the calculated credit note value
+            },
+        }
+
+
+    # def terminate_contract(self):
+    #     for record in self:
+    #         if record.state == 'terminated':
+    #             raise UserError(_("This contract has already been terminated."))
+    #         record.property_id.state = 'rent'
+    #         # Stop upcoming payment plan
+    #         self.stop_upcoming_payments(record)
+    #         # Find remaining invoices
+    #         remaining_invoices = self.env['account.move'].search([
+    #             ('unit_id', '=', record.unit_id.id), ('contract_id', '=', self.id), ('is_credit_note', '=', False),
+    #             ('state', '=', 'posted'),  # Only consider posted invoices
+    #         ])
+    #         # Refund remaining invoice amounts and create a credit note
+    #         refund_description = _("Refund for terminated contract")
+    #         credit_note = None
+    #         for invoice in remaining_invoices:
+    #             credit_note = self.refund_remaining_invoice(invoice, refund_description)
+    #         # Release the unit (apartment)
+    #         if record.unit_id:
+    #             record.unit_id.write({'state': 'rent'})
+    #         # Update history records
+    #         history_ids = self.env['renter.history'].search([('contract_id', '=', record.id)], limit=1)
+    #         history_ids.state = 'cancel'
+    #         history_ids.is_invoice = True
+    #         # Cleanup history logs
+    #         log = self.env['renter.history'].search([('contract_id', '=', record.id), ('state', '=', 'cancel')])
+    #         log.unlink()
+    #         # Mark the contract as terminated (logically deleted)
+    #         record.write({'state': 'terminated'})
 
     # def terminate_contract(self):
     # 	for record in self:
@@ -365,7 +384,7 @@ class ContractDetails(models.Model):
         if len(depposit_journals) > 1:
             action['domain'] = [('id', 'in', depposit_journals.ids)]
         elif len(depposit_journals) == 1:
-            action['views'] = [(self.env.ref('property_rental_mgt_app.view_account_move_form_inherit').id, 'form')]
+            action['views'] = [(self.env.ref('realestate_sgt.view_account_move_form_inherit').id, 'form')]
             action['res_id'] = depposit_journals.ids[0]
         else:
             action = {'type': 'ir.actions.act_window_close'}
@@ -378,7 +397,7 @@ class ContractDetails(models.Model):
         if len(accured_journals) > 1:
             action['domain'] = [('id', 'in', accured_journals.ids)]
         elif len(accured_journals) == 1:
-            action['views'] = [(self.env.ref('property_rental_mgt_app.view_account_move_form_inherit').id, 'form')]
+            action['views'] = [(self.env.ref('realestate_sgt.view_account_move_form_inherit').id, 'form')]
             action['res_id'] = accured_journals.ids[0]
         else:
             action = {'type': 'ir.actions.act_window_close'}
@@ -386,7 +405,7 @@ class ContractDetails(models.Model):
 
     def action_view_pdc_payments(self):
         pdc_payments = self.env['account.payment'].search([('is_pdc_payment', '=', True), ('partner_id', '=', self.partner_id.id)])
-        action = self.env.ref('nets_account_pdc.account_pdc_payment_button_action').sudo().read()[0]
+        action = self.env.ref('realestate_sgt.account_pdc_payment_button_action').sudo().read()[0]
         if len(pdc_payments) > 1:
             action['domain'] = [('id', 'in', pdc_payments.ids)]
         elif len(pdc_payments) == 1:
@@ -442,7 +461,7 @@ class ContractDetails(models.Model):
                 'renewal_date': self.renewal_date,
             }
         }
-        return self.env.ref('property_rental_mgt_app.report_contract_details').report_action(self, data=data)
+        return self.env.ref('realestate_sgt.report_contract_details').report_action(self, data=data)
 
 
 class ContractDocument(models.Model):
